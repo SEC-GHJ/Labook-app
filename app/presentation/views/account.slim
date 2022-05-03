@@ -1,0 +1,24 @@
+div class="row"
+  div class="col"
+  div class="col-sm-2" id='login-border'
+    h3 class="text-center" id='login-text' Accout Details
+
+    div class="row"
+      div class="col-sm-2" id="login-text" Accout:
+      div class="col-sm-10" id="login-text gray"
+        == current_account['account']
+    div class="row"
+      div class="col-sm-2" id="login-text" GPA:
+      div class="col-sm-10" id="login-text gray"
+        == current_account['gpa']
+    div class="row"
+      div class="col-sm-2" id="login-text" Original School:
+      div class="col-sm-10" id="login-text gray"
+        == current_account['ori_school']
+    div class="row"
+      div class="col-sm-2" id="login-text" Original Department:
+      div class="col-sm-10" id="login-text gray"
+        == current_account['ori_department']
+
+  div class="col"
+

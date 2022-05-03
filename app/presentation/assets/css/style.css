@@ -3,3 +3,41 @@
   width:100%;
   display:block;
 }
+#login-border{
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  /* filter: drop-shadow(4px, 4px 4px #c4c4c4); */
+  border-radius: 20px;
+  width: 35em;
+  height: 28em;
+  margin-top: 3em;
+  padding: 3em;
+}
+#button-login{
+  width: 100%;
+  height: 2.5em;
+  background-color: #345688;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  border: none;
+  color: white;
+  margin-top: 1em;
+
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1em;
+}
+#login-text{
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 1000;
+  font-size: 1em;
+  color: #345688;
+  margin-top: 1em;
+  text-decoration: none;
+}
+#gray{
+  color: #c4c4c4;
+}
