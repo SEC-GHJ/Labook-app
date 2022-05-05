@@ -4,9 +4,8 @@
   display:block;
 }
 #nav-bar{
-  color:  #345688;
-  width: 1680px;
-  height: 60px;
+  background-color: #345688 !important;
+  background-image: none;
 }
 #nav-title{
   font-family: 'Comfortaa';
@@ -14,13 +13,26 @@
   font-weight: 400;
   font-size: 28.4444px;
   color: #FFFFFF;
-  margin-top: 1em;
+  /* margin-top: 1em; */
   text-decoration: none;
 }
 #nav-login-but{
-  border: 1px solid #FFFFFF !important;
-  box-sizing: border-box !important;
-  border-radius: 6px !important;
+  width: 7.5em;
+  height: 2em;
+  background-color: #345688;
+  border: 1px solid #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin: 6px 12px 6px 12px;
+}
+#nav-register-but{
+  width: 7.5em;
+  height: 2em;
+  background-color: #FFFFFF;
+  border: 1px solid #345688;
+  box-sizing: border-box;
+  border-radius: 6px;
+  margin: 6px 12px 6px 12px;
 }
 #nav-text{
   font-family: 'Montserrat';
@@ -40,23 +52,22 @@
   margin-top: 1em;
   text-decoration: none;
 }
+@media (min-width: 576px) {
+  #login-border, #account-border{
+    box-sizing: border-box;
+    border: 1px solid #c4c4c4;
+    border-radius: 20px;
+    /* filter: drop-shadow(4px, 4px 4px #c4c4c4); */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+}
 #login-border{
-  border: 1px solid #c4c4c4;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  /* filter: drop-shadow(4px, 4px 4px #c4c4c4); */
-  border-radius: 20px;
   width: 35em;
   height: 28em;
   margin-top: 3em;
   padding: 3em;
 }
 #account-border{
-  border: 1px solid #c4c4c4;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  /* filter: drop-shadow(4px, 4px 4px #c4c4c4); */
-  border-radius: 20px;
   width: 35em;
   height: 20em;
   margin-top: 3em;
@@ -101,4 +112,8 @@
   font-weight: 500;
   font-size: 15px;
   color: #000000;
+}
+
+#flash_bar_danger, #flash_bar_success{
+  margin-top: 1em;
 }

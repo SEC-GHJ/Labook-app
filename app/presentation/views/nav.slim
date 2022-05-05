@@ -1,24 +1,43 @@
-nav class="navbar navbar-expand-sm navbar-dark bg-info"
+nav class="navbar navbar-expand-md navbar-dark bg-primary"  id="nav-bar"
   div class="container-fluid" 
-      div 
-        a class="navbar-brand" rel="home" href="/" id="nav-title" Labook
-        button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"
-          span class="navbar-toggler-icon"
+      a class="navbar-brand" rel="home" href="/" id="nav-title" Labook
+      button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"
+        span class="navbar-toggler-icon"
+      
       div class="collapse navbar-collapse" id="mainNavbar"
-          div class="row justify-content-between"
-            div class="col-sm-1"
+        ul class="navbar-nav me-auto"
+          li class="nav-item"
+            button class="btn btn-btn-outline-dark me-md-2" type="button" 
+              a href='/' id="nav-text" Post
+          li class="nav-item"
+            button class="btn btn-btn-outline-dark me-md-2" type="button" 
+              a href='/' id="nav-text" Support
+          - if @current_account
+            li class="nav-item"
               button class="btn btn-btn-outline-dark me-md-2" type="button" 
-                a href='/auth/login' id="nav-text" Post 
-            div class="col-sm-1"
-              button class="btn btn-btn-outline-dark me-md-2" type="button" 
-                a href='/auth/login' id="nav-text" Support 
-            div class="col-sm-auto"
-            div class="col-sm-1"
-              button class="btn btn-btn-outline-dark me-md-2" type="button" id="nav-login-but"
-                a href='/auth/login' id="nav-text" Login 
-            div class="col-sm-1"
-              button class="btn btn-light" type="button" 
-                a href='/auth/login' id="nav-register" Register
+                a href="/account/#{@current_account['account']}" id="nav-text" Account
+        
+        - if @current_account
+          div class="row justify-content-end"
+            div class="col-md-5 col-12"
+              button type="button" id="nav-login-but"
+                a href='/auth/logout' id="nav-text" Logout
+            div class="col-md-5 col-12"
+              button type="button" id="nav-register-but"
+                a href='/' id="nav-register" Mail
+            div class="col-md-2 col-0"
+        - else
+          div class="row justify-content-end"
+            div class="col-md-5 col-12"
+              button type="button" id="nav-login-but"
+                a href='/auth/login' id="nav-text" Log in
+            div class="col-md-5 col-12"
+              button type="button" id="nav-register-but"
+                a href='/' id="nav-register" Register
+            div class="col-md-2 col-0"
+             
+        
+            
 
 
 
