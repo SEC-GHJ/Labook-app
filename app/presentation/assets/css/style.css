@@ -3,6 +3,38 @@
   width:100%;
   display:block;
 }
+#nav-bar{
+  color:  #345688;
+  width: 1680px;
+  height: 60px;
+}
+#nav-title{
+  font-family: 'Comfortaa';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28.4444px;
+  color: #FFFFFF;
+  margin-top: 1em;
+  text-decoration: none;
+}
+#nav-text{
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color: #FFFFFF;
+  margin-top: 1em;
+  text-decoration: none;
+}
+#nav-register{
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color: #345688;
+  margin-top: 1em;
+  text-decoration: none;
+}
 #login-border{
   border: 1px solid #c4c4c4;
   box-sizing: border-box;
@@ -57,4 +89,11 @@
   color: #636363;
   margin-top: 1em;
   text-decoration: none;
+}
+#home-text-black{
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  color: #000000;
 }
