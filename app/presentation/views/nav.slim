@@ -1,26 +1,19 @@
 nav class="navbar navbar-expand-sm navbar-dark bg-info"
   div class="container-fluid" 
-      div 
-        a class="navbar-brand" rel="home" href="/" id="nav-title" Labook
-        button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"
-          span class="navbar-toggler-icon"
-      div class="collapse navbar-collapse" id="mainNavbar"
-          div class="row justify-content-between"
-            div class="col-sm-1"
-              button class="btn btn-btn-outline-dark me-md-2" type="button" 
-                a href='/auth/login' id="nav-text" Post 
-            div class="col-sm-1"
-              button class="btn btn-btn-outline-dark me-md-2" type="button" 
-                a href='/auth/login' id="nav-text" Support 
-            div class="col-sm-auto"
-            div class="col-sm-1"
-              button class="btn btn-btn-outline-dark me-md-2" type="button" id="nav-login-but"
-                a href='/auth/login' id="nav-text" Login 
-            div class="col-sm-1"
-              button class="btn btn-light" type="button" 
-                a href='/auth/login' id="nav-register" Register
-
-
-
-                      
-
+      a class="navbar-brand" rel="home" href="/" id="nav-title" Labook
+      button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"
+        span class="navbar-toggler-icon"
+      
+      div class="collapse navbar-collapse row justify-content-between" id="mainNavbar"
+          / div class="row justify-content-between"
+          div class="col"
+            button class="btn btn-btn-outline-dark me-sm-2" type="button" 
+              a href='/auth/login' id="nav-text" Post
+            button class="btn btn-btn-outline-dark me-sm-2" type="button" 
+              a href='/auth/login' id="nav-text" Support            
+          div class="col-auto"
+          div class="col"
+            button class="btn btn-btn-outline-dark me-sm-2" type="button" id="nav-login-but"
+              a href='/auth/login' id="nav-text" Login
+            button class="btn btn-light" type="button" 
+              a href='/auth/login' id="nav-register" Register
