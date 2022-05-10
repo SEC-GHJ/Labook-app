@@ -116,3 +116,24 @@
 #flash_bar_danger, #flash_bar_success{
   margin-top: 1em;
 }
+
+.score {
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  display: flex; /* or inline-flex */
+  align-items: center; 
+  justify-content: center;
+}
+
+.positive {
+  background-color: #345688;
+}
+
+.text-positive {
+  color: #345688;
+}
+
+.card {
+  border-radius: 2rem;
+}
