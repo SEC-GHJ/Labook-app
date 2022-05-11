@@ -130,8 +130,16 @@
   background-color: #345688;
 }
 
+.negative {
+  background-color: #E8837E;
+}
+
 .text-positive {
   color: #345688;
+}
+
+.text-negative {
+  color: #E8837E;
 }
 
 .card {
