@@ -21,7 +21,7 @@ module Labook
             password: routing.params['password']
           )
 
-          session[:current_account] = account
+          Securesession.new(session).set(:current_account, account)
           flash[:notice] = "Welcome back #{account['account']}!"
           routing.redirect '/'
         rescue StandardError
@@ -33,6 +33,7 @@ module Labook
 
       routing.on 'logout' do
         routing.get do
+          SecureSession.new(session).delete(:current_account)
           session[:current_account] = nil
           routing.redirect @login_route
         end
