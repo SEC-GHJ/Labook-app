@@ -3,8 +3,8 @@
 require 'roda'
 require 'slim'
 
-module Credence
-  # Base class for Credence Web Application
+module Labook
+  # Base class for Labook Web Application
   class App < Roda
     plugin :render, engine: 'slim', views: 'app/presentation/views'
     plugin :assets, css: 'style.css', path: 'app/presentation/assets'
@@ -28,7 +28,9 @@ module Credence
 
       # GET /
       routing.root do
-        view 'home', locals: { current_account: @current_account }
+        posts = FetchPosts.new(App.config).call
+        view 'home', locals: { current_account: @current_account,
+                               all_posts: posts }
       end
     end
   end
