@@ -21,11 +21,12 @@ module Labook
             password: routing.params['password']
           )
 
-          Securesession.new(session).set(:current_account, account)
+          SecureSession.new(session).set(:current_account, account)
           flash[:notice] = "Welcome back #{account['account']}!"
           routing.redirect '/'
-        rescue StandardError
+        rescue StandardError => e
           flash.now[:error] = 'Account and password did not match our records'
+          puts e.message
           response.status = 400
           view :login
         end
