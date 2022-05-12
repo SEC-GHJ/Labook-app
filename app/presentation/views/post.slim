@@ -1,27 +1,27 @@
 div class="container my-5"
-  div class="row"
+  div class="row row-cols-lg-5 row-cols-sm-2 row-cols-1"
     - all_posts.each do |single_post|
       div class="col"
-        div class="card mb-5 border border-dark border-2 p-2" style="max-width: 540px;"
+        div class="card mb-5 border border-2 p-2" style="max-width: 540px;" onclick="location.href='/post/#{single_post["attributes"]["post_id"]}';"
           div class="row lab-info g-0"
-            div class="col-md-4 d-flex align-items-center"
+            div class="col-4 d-flex align-items-center"
               - if single_post["attributes"]["lab_score"].to_i > 2.5
                 div class="score positive mx-auto text-light" = single_post["attributes"]["lab_score"]
               - else 
                 div class="score negative mx-auto text-light" = single_post["attributes"]["lab_score"]
-            div class="col-md-8"
+            div class="col-8"
               div class="card-body"
                 h5 class="card-title fw-bold text-dark" = single_post["include"]["lab_info"]["attributes"]["department"]
                 h5 class="card-title fw-bold text-dark" = single_post["include"]["lab_info"]["attributes"]["lab_name"]
                 p class="card-text text-muted" = single_post["include"]["lab_info"]["attributes"]["professor"]
             div class="row lab-desc"
-            div class="col-md-2 text-center"
+            div class="col-2 text-center"
               div
                 i class="bi bi-caret-up" style="font-size: 1.5rem;"
               p = single_post["attributes"]["vote_sum"]
               div
                 i class="bi bi-caret-down" style="font-size: 1.5rem;"
-            div class="col-md-10 d-flex align-items-center px-2"
+            div class="col-10 d-flex align-items-center px-2"
               p class="card-text" = single_post["attributes"]["content"]
             div class="row lab-hashtag text-positive text-center"
               p class="card-text" #害怕 #想畢業 #可怕
