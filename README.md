@@ -1,5 +1,4 @@
 # Labook APP
-===
 
 ## Install
 Install this application by cloning the relevant branch and use bundler to install specified gems from Gemfile.lock:
