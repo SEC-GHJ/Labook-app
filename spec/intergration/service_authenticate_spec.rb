@@ -5,10 +5,10 @@ require 'webmock/minitest'
 
 describe 'Test Service Objects' do
   before do
-    @credentials = { account: 'soumya.ray', password: 'mypa$$w0rd' }
-    @mal_credentials = { account: 'soumya.ray', password: 'wrongpassword' }
+    @credentials = { account: 'a1', password: 'password1' }
+    @mal_credentials = { account: 'a1', password: 'wrongpassword' }
     @api_account = { attributes:
-                       { account: 'soumya.ray', gpa: '3', ori_school: 'NTHU', ori_department: 'CS' } }
+                       { account: 'a1', gpa: 3.4, ori_school: 'NTHU', ori_department: 'CS' } }
   end
 
   after do

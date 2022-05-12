@@ -15,8 +15,7 @@ module Labook
     def call(account:, password:)
       response = HTTP.post("#{@config.API_URL}/auth/authenticate",
                            json: { account:, password: })
-
-      raise(UnauthorizedError) unless response.code == 403
+      raise(UnauthorizedError) if response.code == 403
       raise(ApiServerError) if response.code != 200
 
       response.parse['attributes']
