@@ -6,7 +6,7 @@ require_relative './app'
 module Labook
   # Web controller for Labook API
   class App < Roda
-    route('auth') do |routing|
+    route('auth') do |routing| # rubocop:disable Metrics/BlockLength
       @login_route = '/auth/login'
       routing.is 'login' do
         # GET /auth/login

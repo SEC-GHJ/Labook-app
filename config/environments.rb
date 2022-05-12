@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'delegate'
 require 'roda'
 require 'figaro'
 require 'logger'
@@ -46,7 +47,7 @@ module Labook
 
     configure :development, :test do
       require 'pry'
-      SecureSession.setup(ENV['REDIS_URL']) # REDIS_URL used again below
+      SecureSession.setup(ENV.fetch('REDIS_URL', nil)) # REDIS_URL used again below
 
       # use Rack::Session::Cookie,
       #     expire_after: ONE_MONTH, secret: config.SESSION_SECRET

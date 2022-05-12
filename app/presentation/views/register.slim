@@ -5,7 +5,7 @@ link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/c
 div class="row"
   div class="col"
   div class="col-sm-2" id='login-border'
-    h3 class="text-center" id='login-text' LOGIN
+    h3 class="text-center" id='login-text' Create an Account  
     form method='post' action='/auth/login' id='form-login'
       div
         label for='input-username' id='login-text' Account
@@ -13,12 +13,18 @@ div class="row"
       div
         label for='input-password' id='login-text' Password
         input type='password' name='password' id='input-password' class="form-control"
-      
-      button type='submit' id='button-login' value='login' LOGIN
+      div
+        label for='input-password' id='login-text' GPA  
+        input type='text' name='gpa' id='input-username' class="form-control"
+      div
+        label for='input-password' id='login-text' Original School   
+        input type='text' name='ori-school' id='input-username' class="form-control"
+      div
+        label for='input-password' id='login-text' Original Department   
+        input type='text' name='ori-department' id='input-username' class="form-control"
+      button type='submit' id='button-login' value='submit' Create 
     div class="row"
       div class="col"
-        a class="pull-left" id="login-text" href="/auth/register" Create Account
-      div class="col"
-        a class="pull-right" id="login-text" href="/" Forget Password?
+        a class="pull-left" id="login-text" href="/auth/login" Login 
 
   div class="col"

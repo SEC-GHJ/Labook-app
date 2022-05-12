@@ -12,11 +12,11 @@ module Labook
     end
 
     def call(account:, password:, gpa:, ori_school:, ori_department:)
-      message = { account: account,
-                  password: password,
-                  gpa: gpa,
-                  ori_school: ori_school,
-                  ori_department: ori_department }
+      message = { account:,
+                  password:,
+                  gpa:,
+                  ori_school:,
+                  ori_department: }
 
       response = HTTP.post(
         "#{@config.API_URL}/accounts/",
