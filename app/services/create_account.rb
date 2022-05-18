@@ -11,12 +11,13 @@ module Labook
       @config = config
     end
 
-    def call(account:, gpa:, ori_school:, ori_department:, password:)
+    def call(account:, gpa:, ori_school:, ori_department:, password:, email:)
       message = { account:,
                   gpa:,
                   ori_school:,
                   ori_department:,
-                  password: }
+                  password:,
+                  email: }
 
       response = HTTP.post(
         "#{@config.API_URL}/accounts/",
