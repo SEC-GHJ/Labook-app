@@ -14,6 +14,7 @@ module Labook
   # Configuration for the API
   class App < Roda
     plugin :environments
+
     # Environment variables setup
     Figaro.application = Figaro::Application.new(
       environment:,
@@ -60,9 +61,7 @@ module Labook
       #     redis_server: ENV.delete('REDIS_URL')
 
       # Allows running reload! in pry to restart entire app
-      def self.reload!
-        exec 'pry -r ./spec/test_load_all'
-      end
+      def self.reload! = exec 'pry -r ./spec/test_load_all'
     end
   end
 end

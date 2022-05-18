@@ -14,7 +14,7 @@ module Labook
 
     route do |routing|
       response['Content-Type'] = 'text/html; charset=utf-8'
-      @current_account = SecureSession.new(session).get(:current_account)
+      @current_account = CurrentSession.new(session).current_account
 
       routing.public
       routing.assets
@@ -22,9 +22,7 @@ module Labook
 
       # GET /
       routing.root do
-        posts = FetchPosts.new(App.config).call
-        view 'home', locals: { current_account: @current_account,
-                               all_posts: posts }
+        view 'home', locals: { current_account: @current_account }
       end
     end
   end

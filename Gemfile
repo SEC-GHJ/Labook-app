@@ -14,6 +14,7 @@ gem 'rake'
 
 # Debugging
 gem 'pry'
+gem 'rack-test'
 
 # Communication
 gem 'http'
