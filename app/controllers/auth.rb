@@ -28,7 +28,7 @@ module Labook
 
           CurrentSession.new(session).current_account = current_account
 
-          flash[:notice] = "Welcome back #{account['account']}!"
+          flash[:notice] = "Welcome back #{current_account.account}!"
           routing.redirect '/'
         rescue AuthenticateAccount::UnauthorizedError
           flash.now[:error] = 'Account and password did not match our records'
@@ -55,15 +55,15 @@ module Labook
       @register_route = '/auth/register'
       routing.on 'register' do
         routing.is do
-        # Get /auth/register
-        routing.get do
-          view :register
-        end
+         # Get /auth/register
+         routing.get do
+           view :register
+         end
 
         # Post /auth/register
         routing.post do
           account_data = JsonRequestBody.symbolize(routing.params)
-          VerifyRegistration.new(App.config).call(**account_data)
+          VerifyRegistration.new(App.config).call(account_data)
 
           flash[:notice] = 'Please check your email for a verification link'
           routing.redirect '/'
@@ -76,16 +76,16 @@ module Labook
           flash[:error] = 'Registration details are not valid'
           routing.redirect @register_route
         end
-      end
+       end
 
-      # Get /auth/register/<token>
-      routing.get(String) do |registration_token|
-        flash.now[:notice] = 'Email Verified! Please choose a new password'
-        new_account = SecureMessage.decrypt(registration_token)
-        view :register_confirm,
-             locals: { new_account:, registration_token: }
+       # Get /auth/register/<token>
+       routing.get(String) do |registration_token|
+         flash.now[:notice] = 'Email Verified! Please choose a new password'
+         new_account = SecureMessage.decrypt(registration_token)
+         view :register_confirm,
+              locals: { new_account:, registration_token: }
+       end
       end
-     end
     end
   end
 end

@@ -10,7 +10,7 @@ module Labook
       routing.on do
         # GET /account/login
         routing.get String do |account|
-          if @current_account && @current_account['account'] == account
+          if @current_account && @current_account.account == account
             view :account, locals: { current_account: @current_account }
           else
             routing.redirect '/auth/login'
@@ -26,7 +26,7 @@ module Labook
           new_account = SecureMessage.decrypt(registration_token)
           CreateAccount.new(App.config).call(
             email: new_account['email'],
-            username: new_account['account'],
+            account: new_account['account'],
             password: routing.params['password']
           )
           flash[:notice] = 'Account created! Please login'
