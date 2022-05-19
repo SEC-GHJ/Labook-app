@@ -11,7 +11,7 @@ module Labook
     attr_reader :account_info, :auth_token
 
     def account
-      @account_info ? @account_info['account '] : nil
+      @account_info ? @account_info['account'] : nil
     end
 
     def email

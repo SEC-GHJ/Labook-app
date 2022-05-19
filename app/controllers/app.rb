@@ -22,7 +22,7 @@ module Labook
 
       # GET /
       routing.root do
-        view 'home', locals: { current_account: @current_account }
+        view 'home', locals: { current_account: @current_account, all_posts: post }
       end
     end
   end
