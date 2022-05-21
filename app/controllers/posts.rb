@@ -1,0 +1,26 @@
+# frozen_string_literal: true
+
+require 'roda'
+
+module Labook
+  # Web controller for Credence API
+  class App < Roda
+    route('posts') do |routing|
+      routing.on do
+        # GET /projects/
+        routing.get do
+          if @current_account.logged_in?
+            posts_list = GetAllPosts.new(App.config).call(@current_account)
+
+            posts = Posts.new(posts_list)
+
+            view :projects_all,
+                 locals: { current_user: @current_account, posts: }
+          else
+            routing.redirect '/auth/login'
+          end
+        end
+      end
+    end
+  end
+end

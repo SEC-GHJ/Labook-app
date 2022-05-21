@@ -6,26 +6,22 @@ div class="row"
   div class="col"
   div class="col-sm-2" id='login-border'
     h3 class="text-center" id='login-text' Create an Account  
-    form method='post' action='/auth/register' id='form-login'
+    form method='post' action='/account/#{registration_token}' id='form-login'
       div
         label for='input-username' id='login-text' Account
-        input type='text' name='account' id='input-username' class="form-control"
+      div class="col-sm-5 col-6" id="login-text-gray"
+        == current_account['account']
+      div
+        label for='input-password' id='login-text' email    
+      div class="col-sm-5 col-6" id="login-text-gray"
+        == current_account['email']
       div
         label for='input-password' id='login-text' Password
         input type='password' name='password' id='input-password' class="form-control"
       div
-        label for='input-password' id='login-text' GPA  
-        input type='text' name='gpa' id='input-username' class="form-control"
-      div
-        label for='input-password' id='login-text' Original School   
-        input type='text' name='ori_school' id='input-username' class="form-control"
-      div
-        label for='input-password' id='login-text' Original Department   
-        input type='text' name='ori_department' id='input-username' class="form-control"
-      div
-        label for='input-password' id='login-text' email    
-        input type='text' name='email' id='input-username' class="form-control"
-      button type='submit' id='button-login' value='submit' Create 
+        label for='password_confirm_input' id='login-text'  Re-enter Password
+        input type='password' name='password_confirm' id='input-password' class="form-control"      
+      button type='submit' id='button-login' value='submit' Submit 
     div class="row"
       div class="col"
         a class="pull-left" id="login-text" href="/auth/login" Login 
