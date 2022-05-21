@@ -10,11 +10,11 @@ div class="row"
       div
         label for='input-username' id='login-text' Account
       div class="col-sm-5 col-6" id="login-text-gray"
-        == current_account['account']
+        == new_account['account']
       div
-        label for='input-password' id='login-text' email    
+        label for='input-password' id='login-text' Email    
       div class="col-sm-5 col-6" id="login-text-gray"
-        == current_account['email']
+        == new_account['email']
       div
         label for='input-password' id='login-text' Password
         input type='password' name='password' id='input-password' class="form-control"

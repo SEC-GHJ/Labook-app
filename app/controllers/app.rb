@@ -22,6 +22,7 @@ module Labook
 
       # GET /
       routing.root do
+        post = FetchPosts.new(App.config).call
         view 'home', locals: { current_account: @current_account, all_posts: post }
       end
     end
