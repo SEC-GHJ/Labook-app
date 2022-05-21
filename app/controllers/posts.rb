@@ -14,7 +14,7 @@ module Labook
 
             posts = Posts.new(posts_list)
 
-            view :projects_all,
+            view :posts_list,
                  locals: { current_user: @current_account, posts: }
           else
             routing.redirect '/auth/login'
