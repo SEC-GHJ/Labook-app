@@ -27,6 +27,9 @@ module Labook
           CreateAccount.new(App.config).call(
             email: new_account['email'],
             account: new_account['account'],
+            gpa: new_account['gpa'],
+            ori_department: new_account['ori_department'],
+            ori_school: new_account['ori_school'],
             password: routing.params['password']
           )
           flash[:notice] = 'Account created! Please login'

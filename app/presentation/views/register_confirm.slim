@@ -15,6 +15,15 @@ div class="row"
         label for='input-password' id='login-text' Email    
       div class="col-sm-5 col-6" id="login-text-gray"
         == new_account['email']
+      div 
+        label for='input-password' id='login-text' GPA
+        input type='text' name='gpa' id='input-username' class="form-control" value=new_account['gpa']
+      div
+        label id='login-text' Original School     
+        input type='text' name='ori_school' id='input-username' class="form-control" value=new_account['ori_school']
+      div
+        label for='input-password' id='login-text' Original department
+        input type='text' name='ori_department' id='input-username' class="form-control" value=new_account['ori_department']
       div
         label for='input-password' id='login-text' Password
         input type='password' name='password' id='input-password' class="form-control"
