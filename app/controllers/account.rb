@@ -8,7 +8,7 @@ module Labook
   class App < Roda
     route('account') do |routing|
       routing.on do
-        # GET /account/login
+        # GET /account/(username)
         routing.get String do |account|
           if @current_account && @current_account.account == account
             view :account, locals: { current_account: @current_account }

@@ -14,6 +14,18 @@ module Labook
       @account_info ? @account_info['account'] : nil
     end
 
+    def ori_department
+      @account_info ? @account_info['ori_department'] : nil
+    end
+
+    def gpa
+      @account_info ? @account_info['gpa'] : nil
+    end
+
+    def ori_school
+      @account_info ? @account_info['ori_school'] : nil
+    end
+
     def email
       @account_info ? @account_info['email'] : nil
     end
