@@ -21,8 +21,8 @@ module Labook
       @vote_sum = post_info['attributes']['vote_sum']
       @created_at = post_info["attributes"]["created_at"]
 
-      @comments = post_info["include"]["comments"].map do |comment|
-        Comment.new(comment)
+      @comments = post_info["include"]["comments"].each_with_index.map do |comment, num|
+        Comment.new(comment, num)
       end
 
       @comments.sort_by! { |comment| comment.vote_sum }.reverse!
