@@ -123,6 +123,16 @@
   margin-top: 1em;
 }
 
+.post_font{
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 500;
+}
+
+.vote_sum{
+  margin-bottom: 0;
+}
+
 .score {
   height: 65px;
   width: 65px;
@@ -130,6 +140,8 @@
   display: flex; /* or inline-flex */
   align-items: center; 
   justify-content: center;
+
+  font-size: 1.5em;
 }
 
 .positive {
@@ -151,4 +163,46 @@
 .card {
   border-radius: 2rem;
   cursor: pointer;
+  min-width: 17em;
+  max-width: 540px;
+}
+
+.post_content{
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /*行數*/
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+@media (min-width: 992px){
+  .container, .container-lg, .container-md, .container-sm {
+    max-width: 1200px;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px){
+  .container, .container-lg, .container-md, .container-sm {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 768px){
+  .container, .container-sm {
+      max-width: 823px;
+  }
+}
+
+@media (min-width: 992px){
+  .post_align {
+    margin-left: 1.5em;
+  }
+}
+
+@media (max-width: 992px){
+  .post_align {
+    margin-left: 0.6em;
+  }
 }

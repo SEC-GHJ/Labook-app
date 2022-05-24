@@ -15,5 +15,13 @@ module Labook
 
       response.parse['data']
     end
+
+    def single(lab_id, post_id)
+      response = HTTP.get("#{@config.API_URL}/labs/#{lab_id}/posts/#{post_id}")
+      raise unless response.code == 200
+
+      response.parse
+    end
+
   end
 end

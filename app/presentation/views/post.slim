@@ -1,27 +1,37 @@
-div class="container my-5"
-  div class="row row-cols-lg-5 row-cols-sm-2 row-cols-1"
-    - all_posts.each do |single_post|
-      div class="col"
-        div class="card mb-5 border border-2 p-2" style="max-width: 540px;" onclick="location.href='/post/#{single_post["attributes"]["post_id"]}';"
-          div class="row lab-info g-0"
-            div class="col-4 d-flex align-items-center"
-              - if single_post["attributes"]["lab_score"].to_i > 2.5
-                div class="score positive mx-auto text-light" = single_post["attributes"]["lab_score"]
-              - else 
-                div class="score negative mx-auto text-light" = single_post["attributes"]["lab_score"]
-            div class="col-8"
-              div class="card-body"
-                h5 class="card-title fw-bold text-dark" = single_post["include"]["lab_info"]["attributes"]["department"]
-                h5 class="card-title fw-bold text-dark" = single_post["include"]["lab_info"]["attributes"]["lab_name"]
-                p class="card-text text-muted" = single_post["include"]["lab_info"]["attributes"]["professor"]
-            div class="row lab-desc"
-            div class="col-2 text-center"
-              div
-                i class="bi bi-caret-up" style="font-size: 1.5rem;"
-              p = single_post["attributes"]["vote_sum"]
-              div
-                i class="bi bi-caret-down" style="font-size: 1.5rem;"
-            div class="col-10 d-flex align-items-center px-2"
-              p class="card-text" = single_post["attributes"]["content"]
-            div class="row lab-hashtag text-positive text-center"
-              p class="card-text" #害怕 #想畢業 #可怕
+div class="row" style="margin-top: 3rem"
+  div class="col"
+  div class="col-sm-8 post_font"
+    div class="row"
+      div class="col-sm-2 col-3"
+        div class="col-4 d-flex align-items-center"
+        - if single_post["attributes"]["lab_score"].to_i > 2.5
+          div class="score positive mx-auto text-light" = single_post["attributes"]["lab_score"]
+        - else 
+          div class="score negative mx-auto text-light" = single_post["attributes"]["lab_score"]
+      div class="col-sm-8 col-7"
+        div
+          h5 class="fw-bold text-dark" style="margin-bottom: 0;" = single_post["include"]["lab_info"]["attributes"]["school"] + " " + single_post["include"]["lab_info"]["attributes"]["department"]
+          h5 class="fw-bold text-dark" = single_post["include"]["lab_info"]["attributes"]["lab_name"]
+          p class="text-muted" = single_post["include"]["lab_info"]["attributes"]["professor"] + "　教授"
+      div class="col-2 text-center"
+        div
+          i class="bi bi-caret-up" style="font-size: 1.5rem;"
+        p class="vote_sum" = single_post["attributes"]["vote_sum"]
+        div
+          i class="bi bi-caret-down" style="font-size: 1.5rem;"
+
+
+    div class="col post_align"
+      div class="row text-muted" style="font-size: 0.8em;"
+        p  style="margin-bottom: 0.1em;" B0
+        p = single_post["attributes"]["created_at"]
+      div class="row"
+        div class="col-10 d-flex align-items-center px-2"
+          p class="post_content" = single_post["attributes"]["content"]
+        div class="row lab-hashtag text-positive"
+          p class="" = "#" + single_post["attributes"]["professor_attitude"]
+    hr class="col my-0"
+  div class="col" 
+
+- single_post["include"]["comments"].each do |single_comment|
+  single_comment["attributes"]["content"]
