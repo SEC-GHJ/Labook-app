@@ -19,7 +19,8 @@ module Labook
 
       response = HTTP.post("#{@config.API_URL}/auth/register",
                            json: registration_data)
-      raise(VerificationError) unless response.code == 202
+      raise(VerificationError, response) unless response.code == 202
+      
 
       JSON.parse(response.to_s)
     rescue HTTP::ConnectionError
