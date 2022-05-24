@@ -7,7 +7,7 @@ module Labook
   class App < Roda
     route('posts') do |routing|
       routing.on do
-        # GET /projects/
+        # GET /posts
         routing.get do
           if @current_account.logged_in?
             posts_list = GetAllPosts.new(App.config).call(@current_account)

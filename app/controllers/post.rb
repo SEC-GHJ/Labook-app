@@ -8,12 +8,10 @@ module Labook
   class App < Roda
     route('post') do |routing|
       routing.on do
-        # GET /post/{lab_id}/{post_id}
-        routing.on String do |lab_id|
-          routing.on String do |post_id|
-            single_post = FetchPosts.new(App.config).single(lab_id, post_id)
-            view :post, locals: { single_post: single_post }
-          end
+        # GET /post/{post_id}
+        routing.on String do |post_id|
+          single_post = FetchPosts.new(App.config).single(post_id)
+          view :post, locals: { single_post: single_post }
         end
       end
     end
