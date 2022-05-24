@@ -32,6 +32,7 @@ div class="row" style="margin-top: 3rem"
           p class="" = "#" + single_post.professor_attitude
     hr class="col my-0"
   div class="col" 
-
-/ - single_post["include"]["comments"].each do |single_comment|
-/   single_comment["attributes"]["content"]
+- single_post.comments.each do |single_comment|
+  div class="row"
+    a = single_comment.content
+    a = single_comment.vote_sum
