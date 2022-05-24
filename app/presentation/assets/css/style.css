@@ -52,7 +52,7 @@
   text-decoration: none;
 }
 @media (min-width: 576px) {
-  #login-border, #account-border{
+  #login-border, #account-border, #regis-border{
     box-sizing: border-box;
     border: 1px solid #c4c4c4;
     border-radius: 20px;
@@ -68,7 +68,6 @@
 }
 #regis-border{
   width: 35em;
-  height: 28em;
   margin-top: 3em;
   padding: 3em;
 }
