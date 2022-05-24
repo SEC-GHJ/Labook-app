@@ -21,7 +21,7 @@ module Labook
       account_info = JSON.parse(response.to_s)['attributes']
 
       { account: account_info['account']['attributes'],
-        auth_token: account_info['autho_token'] }
+        auth_token: account_info['auth_token'] }
     rescue HTTP::ConnectionError
       raise ApiServerError
     end

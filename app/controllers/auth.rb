@@ -20,7 +20,7 @@ module Labook
             account: routing.params['account'],
             password: routing.params['password']
           )
-
+          puts account_info
           current_account = Account.new(
             account_info[:account],
             account_info[:auth_token]
