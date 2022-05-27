@@ -32,8 +32,24 @@ div class="row" style="margin-top: 3rem"
           p class="" = "#" + single_post.professor_attitude
     hr class="col my-0"
   div class="col" 
+
 - single_post.comments.each do |single_comment|
-  div class="row"
-    a = single_comment.num
-    a = single_comment.content
-    a = single_comment.vote_sum
+  div class="row" style="margin-top: 3rem"
+    div class="col-sm-2"
+    div class="col-sm-8 post_font"
+      div class="row"
+        div class="col-10  post_align"
+          div class="row text-muted" style="font-size: 0.8em;"
+            p style="margin-bottom: 0.1em;" = single_comment.num
+            p style="margin-bottom: 0.1em;" = single_comment.created_at
+          div class="row" style="margin-top: 1rem"
+            div class="col-10 d-flex align-items-center px-2"
+              p class="comment_content" = single_comment.content
+        div class="col-1 text-center" 
+          div
+            i class="bi bi-caret-up" style="font-size: 1.5rem;"
+          p class="vote_sum" = single_comment.vote_sum
+          div
+            i class="bi bi-caret-down" style="font-size: 1.5rem;"
+      hr class="col my-0" style="margin-top: 2rem"
+    div class="col-sm-1"

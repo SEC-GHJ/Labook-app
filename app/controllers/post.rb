@@ -12,7 +12,7 @@ module Labook
         routing.on String do |post_id|
           single_post = FetchPosts.new(App.config).single(post_id)
           post = Post.new(single_post)
-          view :post, locals: { single_post: post}
+          view :post, locals: { single_post: post }
         end
       end
     end
