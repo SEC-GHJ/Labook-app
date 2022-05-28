@@ -4,7 +4,7 @@ require_relative 'form_base'
 
 module Labook
   module Form
-    # make a comment
+    # Login Credentials
     class LoginCredentials < Dry::Validation::Contract
       params do
         required(:account).filled
@@ -12,20 +12,20 @@ module Labook
       end
     end
 
-    # Registration section
+    # Registration
     class Registration < Dry::Validation::Contract
       config.messages.load_paths << File.join(__dir__, 'errors/account_details.yml')
 
       params do
         required(:account).filled(format?: USERNAME_REGEX, min_size?: 4)
         required(:email).filled(format?: EMAIL_REGEX)
-        required(:ori_school).filled(format?: SCHOOL_REGEX, min_size?: 3)
-        required(:ori_department).filled(format?: DEPART_REGEX, min_size?: 2)
-        required(:gpa).filled(format?: GPA_REGEX, min_size?: 1)
+        # required(:ori_school).filled(format?: SCHOOL_REGEX)
+        # required(:ori_department).filled(format?: DEPART_REGEX)
+        # required(:gpa).filled(format?: GPA_REGEX)
       end
     end
 
-    # password section
+    # Passwords
     class Passwords < Dry::Validation::Contract
       config.messages.load_paths << File.join(__dir__, 'errors/password.yml')
 
@@ -39,15 +39,11 @@ module Labook
       end
 
       rule(:password) do
-        unless enough_entropy?(value)
-          key.failure('Password must be more complex')
-        end
+        key.failure('Password must be more complex') unless enough_entropy?(value)
       end
 
       rule(:password, :password_confirm) do
-        unless values[:password].eql?(values[:password_confirm])
-          key.failure('Passwords do not match')
-        end
+        key.failure('Passwords do not match') unless values[:password].eql?(values[:password_confirm])
       end
     end
   end

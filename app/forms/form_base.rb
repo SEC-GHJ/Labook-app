@@ -5,11 +5,11 @@ require 'dry-validation'
 module Labook
   # Form helpers
   module Form
-    USERNAME_REGEX = /^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/.freeze
-    EMAIL_REGEX = /@/.freeze
-    SCHOOL_REGEX = /[A-Z]/.freeze
-    DEPART_REGEX = /[A-Z]/.freeze
-    GPA_REGEX = /[1-4]/.freeze
+    USERNAME_REGEX = /^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$/
+    EMAIL_REGEX = /@/
+    SCHOOL_REGEX = /[A-Z]/
+    DEPART_REGEX = /[A-Z]/
+    GPA_REGEX = /^[0-4]\.\d\d$/
 
     def self.validation_errors(validation)
       validation.errors.to_h.map { |k, v| [k, v].join(' ') }.join('; ')
