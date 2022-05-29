@@ -3,7 +3,7 @@ div class="container my-5 post_container"
     - unless all_posts.nil?
       - all_posts.all.each do |single_post|
         div class="col post_font"
-          div class="card mb-5 border border-2 p-2" onclick="location.href='/post/#{single_post.post_id}';"
+          div class="card card-post mb-5 border border-2 p-2" onclick="location.href='/post/#{single_post.post_id}';"
             div class="row lab-info g-0"
               div class="col-4 d-flex align-items-center"
                 - if single_post.lab_score > 2.5

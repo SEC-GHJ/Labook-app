@@ -3,7 +3,7 @@
 require 'http'
 
 module Labook
-  # Returns an authenticated user, or nil
+  # Returns all public posts
   class FetchPosts
     def initialize(config)
       @config = config

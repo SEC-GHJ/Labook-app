@@ -8,7 +8,7 @@ module Labook
   # Base class for Labook Web Application
   class App < Roda
     plugin :render, engine: 'slim', views: 'app/presentation/views'
-    plugin :assets, css: 'style.css', path: 'app/presentation/assets'
+    plugin :assets, css: ['style.css', 'message.css'], path: 'app/presentation/assets'
     plugin :public, root: 'app/presentation/public'
     plugin :multi_route
     plugin :flash
