@@ -14,7 +14,7 @@ module Labook
 
       routing.is do
         routing.on do
-          view :message, locals: { chatrooms: @chatrooms, messages: nil}
+          view :message, locals: { chatrooms: @chatrooms, messages: nil }
         end
       end
 
@@ -23,8 +23,8 @@ module Labook
           all_messages = FetchMessages.new(App.config, @current_account).call(other_account:)
           messages = Messages.new(all_messages)
           view :message, locals: { chatrooms: @chatrooms, messages:,
-                                    other_account:,
-                                    account_id: @current_account.account_id}
+                                   other_account:,
+                                   account_id: @current_account.account_id }
         end
 
         routing.post do
@@ -32,6 +32,7 @@ module Labook
           new_chat = CreateChat.new(App.config, @current_account)
                                .call(other_account:, content:)
           raise if new_chat.nil?
+
           routing.redirect "#{@message_route}/#{other_account}"
         end
       end

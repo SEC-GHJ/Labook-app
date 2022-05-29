@@ -14,7 +14,10 @@ module Labook
       @config = config
     end
 
-    def call(account:, gpa:, ori_school:, ori_department:, password:, email:)
+    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/ParameterLists
+    def call(account:, gpa:, ori_school:,
+             ori_department:, password:, email:)
       message = { account:,
                   gpa:,
                   ori_school:,
@@ -29,5 +32,7 @@ module Labook
 
       raise InvalidAccount unless response.code == 201
     end
+    # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/ParameterLists
   end
 end
