@@ -23,7 +23,7 @@ module Labook
                   email: }
 
       response = HTTP.post(
-        "#{@config.API_URL}/accounts/",
+        "#{@config.API_URL}/accounts",
         json: message
       )
 
