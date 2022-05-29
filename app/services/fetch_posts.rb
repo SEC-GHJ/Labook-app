@@ -23,7 +23,7 @@ module Labook
       response.parse
     end
 
-    def myPosts(current_account)
+    def my_posts(current_account)
       response = HTTP.auth("Bearer #{current_account.auth_token}")
                      .get("#{@config.API_URL}/posts/me")
 

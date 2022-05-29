@@ -10,7 +10,7 @@ module Labook
       routing.on do
         chatrooms_json = FetchMessages.new(App.config, @current_account).call
         chatrooms = Chatrooms.new(chatrooms_json)
-        view :message, locals: {chatrooms: chatrooms}
+        view :message, locals: { chatrooms: }
       end
     end
   end
