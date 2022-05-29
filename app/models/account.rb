@@ -14,6 +14,10 @@ module Labook
       @account_info ? @account_info['account'] : nil
     end
 
+    def account_id
+      @account_info ? @account_info['account_id'] : nil
+    end
+
     def ori_department
       @account_info ? @account_info['ori_department'] : nil
     end

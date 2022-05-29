@@ -9,7 +9,7 @@ div class="container my-5"
             input type="text" class="form-control" placeholder="Search..."
           - chatrooms.all.each do |chatroom|
             ul class="list-unstyled chat-list mt-2 mb-0"
-              li class="clearfix"
+              li class="clearfix" onclick="location.href='/messages/#{chatroom.account}';"
                 img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar"
                 div class="about"
                   div class="name" = chatroom.account
@@ -23,51 +23,74 @@ div class="container my-5"
             /     div class="status"
             /       i class="fa fa-circle offline"
             /       = " offline since Oct 28"
-              
-        div class="chat"
-          div class="chat-header clearfix"
-            div class="row"
-              div class="col-lg-6"
-                a href="javascript:void(0);" data-toggle="modal" data-target="#view_info"
-                  img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar"
-    
-                div class="chat-about"
-                  h6 class="m-b-0" Aiden Chavez
-                  small Last seen: 2 hours ago
+        - if messages.nil?
+          div class="chat"
+            div class="chat-header clearfix"
+              div class="row"
+                div class="col-lg-6"
+                  a href="javascript:void(0);" data-toggle="modal" data-target="#view_info"
+                    img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar"
+      
+                  div class="chat-about"
+                    h6 class="m-b-0" Aiden Chavez
+                    small Last seen: 2 hours ago
+                  
                 
-              
-              div class="col-lg-6 hidden-sm text-end"
-                a href="javascript:void(0);" class="btn btn-outline-secondary"
-                  i class="fa fa-camera"
-                a href="javascript:void(0);" class="btn btn-outline-primary"
-                  i class="fa fa-image"
-                a href="javascript:void(0);" class="btn btn-outline-info"
-                  i class="fa fa-cogs"
-                a href="javascript:void(0);" class="btn btn-outline-warning"
-                  i class="fa fa-question"
-              
+                div class="col-lg-6 hidden-sm text-end"
+                  a href="javascript:void(0);" class="btn btn-outline-secondary"
+                    i class="fa fa-camera"
+                  a href="javascript:void(0);" class="btn btn-outline-primary"
+                    i class="fa fa-image"
+                  a href="javascript:void(0);" class="btn btn-outline-info"
+                    i class="fa fa-cogs"
+                  a href="javascript:void(0);" class="btn btn-outline-warning"
+                    i class="fa fa-question"
+                
           
-          
-          div class="chat-history"
-            ul class="m-b-0"
-              li class="clearfix"
-                div class="message-data text-end"
-                  span class="message-data-time" 10:10 AM, Today
-                  img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar"
-                div class="message other-message float-right" Hi Aiden, how are you? How is the project coming along? 
-              li class="clearfix"
-                div class="message-data"
-                  span class="message-data-time" 10:12 AM, Today
-                div class="message my-message" Are we meeting today?                                    
-              li class="clearfix"
-                div class="message-data"
-                  span class="message-data-time" 10:15 AM, Today
-                div class="message my-message" Project has been already finished and I have results to show you.
+        - else 
+          div class="chat"
+            div class="chat-header clearfix"
+              div class="row"
+                div class="col-lg-6"
+                  a href="javascript:void(0);" data-toggle="modal" data-target="#view_info"
+                    img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar"
+      
+                  div class="chat-about"
+                    h6 class="m-b-0" = other_account
+                    small Last seen: 2 hours ago
+                  
+                
+                div class="col-lg-6 hidden-sm text-end"
+                  a href="javascript:void(0);" class="btn btn-outline-secondary"
+                    i class="fa fa-camera"
+                  a href="javascript:void(0);" class="btn btn-outline-primary"
+                    i class="fa fa-image"
+                  a href="javascript:void(0);" class="btn btn-outline-info"
+                    i class="fa fa-cogs"
+                  a href="javascript:void(0);" class="btn btn-outline-warning"
+                    i class="fa fa-question"
+                
+            
+            - messages.all.each do |single_message|
+              div class="chat-history"
+                ul class="m-b-0"
+                  - if single_message.sender_id == account_id
+                    li class="clearfix"
+                      div class="message-data text-end"
+                        span class="message-data-time" = single_message.created_at
+                        img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar"
+                      div class="message other-message float-right" = single_message.content
+                  - else 
+                    li class="clearfix"
+                      div class="message-data"
+                        span class="message-data-time" = single_message.created_at
+                      div class="message my-message" = single_message.content
 
-          div class="chat-message clearfix"
-            div class="input-group mb-0"
-              input type="text" class="form-control" placeholder="Enter text here..."                                    
-              div class="input-group-text"
-                span class="fa fa-send"
-              
-          
+            div class="chat-message clearfix"
+              form role="form" action="/messages/#{other_account}" method='post' class="input-group mb-0"
+                input type="text" class="form-control" name="content" placeholder="Enter text here..."                                    
+                div class="input-group-text"
+                  button type='submit' class="btn submit" id='message-form-submit' value='submit'
+                    span class="fa fa-send"
+                
+            
