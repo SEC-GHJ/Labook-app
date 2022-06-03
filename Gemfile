@@ -26,6 +26,9 @@ gem 'dry-validation'
 gem 'rack-ssl-enforcer'
 gem 'rbnacl' # assumes libsodium package already installed
 
+# Time format
+gem 'time_difference'
+
 # Development
 group :development do
   gem 'rubocop'

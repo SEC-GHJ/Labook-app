@@ -7,8 +7,8 @@ div class="container my-5"
             div class="input-group-text"
               span class="fa fa-search"
             input type="text" class="form-control" placeholder="Search..."
-          - chatrooms.all.each do |chatroom|
-            ul class="list-unstyled chat-list mt-2 mb-0"
+          ul class="list-unstyled chat-list mt-2 mb-0"
+            - chatrooms.all.each do |chatroom|
               li class="clearfix" onclick="location.href='/messages/#{chatroom.account}';"
                 img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar"
                 div class="about"
@@ -44,7 +44,7 @@ div class="container my-5"
       
                   div class="chat-about"
                     h6 class="m-b-0" = other_account
-                    / small Last seen: 2 hours ago
+                    small = "Last seen: #{messages.last_seen} ago"
                 / div class="col-lg-6 hidden-sm text-end"
                 /   a href="javascript:void(0);" class="btn btn-outline-secondary"
                 /     i class="fa fa-camera"
@@ -55,10 +55,9 @@ div class="container my-5"
                 /   a href="javascript:void(0);" class="btn btn-outline-warning"
                 /     i class="fa fa-question"
                 
-            
-            - messages.all.each do |single_message|
-              div class="chat-history"
-                ul class="m-b-0"
+            div class="chat-history"
+              ul class="m-b-0"
+                - messages.all.each do |single_message|    
                   - if single_message.sender_id == account_id
                     li class="clearfix"
                       div class="message-data text-end"
