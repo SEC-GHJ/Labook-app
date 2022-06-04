@@ -14,7 +14,9 @@ div class="row"
         label for='input-password' id='login-text' Password
         input type='password' name='password' id='input-password' class="form-control"
       
-      button type='submit' id='button-login' value='login' LOGIN
+      button type='submit' id='button-login' class="button-login" value='login' LOGIN
+    hr
+    button type="button" id='line-button-login' class="button-login" onclick="location.href='#{line_oauth_url}';" LOGIN ith LINE
     div class="row"
       div class="col"
         a class="pull-left" id="login-text" href="/auth/register" Create Account

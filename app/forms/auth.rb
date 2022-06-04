@@ -19,9 +19,6 @@ module Labook
       params do
         required(:account).filled(format?: USERNAME_REGEX, min_size?: 4)
         required(:email).filled(format?: EMAIL_REGEX)
-        required(:ori_school).filled
-        required(:ori_department).filled
-        required(:gpa).filled
       end
     end
 

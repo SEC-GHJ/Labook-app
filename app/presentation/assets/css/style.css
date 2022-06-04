@@ -78,7 +78,7 @@
   margin-top: 3em;
   padding: 3em;
 }
-#button-login{
+.button-login{
   width: 100%;
   height: 2.5em;
   background-color: #345688;
@@ -93,6 +93,11 @@
   font-weight: 500;
   font-size: 1em;
 }
+
+#line-button-login {
+  background-color: #24C220;
+}
+
 #login-text{
   font-family: 'Fira Sans';
   font-style: normal;
