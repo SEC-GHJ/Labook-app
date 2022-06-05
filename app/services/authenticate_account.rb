@@ -12,9 +12,9 @@ module Labook
       @config = config
     end
 
-    def call(account:, password:)
+    def call(username:, password:)
       response = HTTP.post("#{@config.API_URL}/auth/authenticate",
-                           json: { account:, password: })
+                           json: { username:, password: })
       raise(UnauthorizedError) if response.code == 403
       raise(ApiServerError) if response.code != 200
 

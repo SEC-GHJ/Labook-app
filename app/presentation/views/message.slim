@@ -43,7 +43,7 @@ div class="container my-5"
                     img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar"
       
                   div class="chat-about"
-                    h6 class="m-b-0" = other_account
+                    h6 class="m-b-0" = other_username
                     small = "Last seen: #{messages.last_seen} ago"
                 / div class="col-lg-6 hidden-sm text-end"
                 /   a href="javascript:void(0);" class="btn btn-outline-secondary"
@@ -71,7 +71,7 @@ div class="container my-5"
                       div class="message my-message" = single_message.content
 
             div class="chat-message clearfix"
-              form role="form" action="/messages/#{other_account}" method='post' class="input-group mb-0"
+              form role="form" action="/messages/#{other_username}" method='post' class="input-group mb-0"
                 input type="text" class="form-control" name="content" placeholder="Enter text here..."                                    
                 div class="input-group-text"
                   button type='submit' class="btn submit" id='message-form-submit' value='submit'

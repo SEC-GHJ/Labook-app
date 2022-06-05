@@ -6,7 +6,7 @@ module Labook
     attr_reader :account
 
     def initialize(chat_info)
-      @account = chat_info['attributes']['account']
+      @account = chat_info['attributes']['username']
     end
   end
 end

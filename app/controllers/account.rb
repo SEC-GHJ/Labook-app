@@ -24,13 +24,16 @@ module Labook
           passwords = Form::Passwords.new.call(routing.params)
           raise Form.message_values(passwords) if passwords.failure?
 
+          profile_info = Form::Profile.new.call(routing.params)
           new_account = SecureMessage.decrypt(registration_token)
+
           CreateAccount.new(App.config).call(
             email: new_account['email'],
-            account: new_account['account'],
-            gpa: new_account['gpa'],
-            ori_department: new_account['ori_department'],
-            ori_school: new_account['ori_school'],
+            username: new_account['username'],
+            nickname: profile_info['nickname'],
+            gpa: profile_info['gpa'],
+            ori_department: profile_info['ori_department'],
+            ori_school: profile_info['ori_school'],
             password: passwords['password']
           )
           flash[:notice] = 'Account created! Please login'

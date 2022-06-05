@@ -7,7 +7,7 @@ module Labook
   class CreateAccount
     # Error for accounts that cannot be created
     class InvalidAccount < StandardError
-      def message = 'This account can no loger be create: please start again'
+      def message = 'This account can no loger be created: please start again'
     end
 
     def initialize(config)
@@ -16,9 +16,10 @@ module Labook
 
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/ParameterLists
-    def call(account:, gpa:, ori_school:,
+    def call(username:, nickname:, gpa:, ori_school:,
              ori_department:, password:, email:)
-      message = { account:,
+      message = { username:,
+                  nickname:,
                   gpa:,
                   ori_school:,
                   ori_department:,

@@ -26,7 +26,7 @@ module Labook
       routing.is 'login' do
         # GET /auth/login
         routing.get do
-          view :login
+          view :login, locals: { line_oauth_url: line_oauth_url(App.config) }
         end
 
         # POST /auth/login
@@ -47,7 +47,7 @@ module Labook
 
           CurrentSession.new(session).current_account = current_account
 
-          flash[:notice] = "Welcome back #{current_account.account}!"
+          flash[:notice] = "Welcome back #{current_account.username}!"
           routing.redirect '/'
         rescue AuthenticateAccount::UnauthorizedError
           flash.now[:error] = 'Account and password did not match our records'

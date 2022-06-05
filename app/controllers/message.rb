@@ -18,12 +18,12 @@ module Labook
         end
       end
 
-      routing.on String do |other_account|
+      routing.on String do |other_username|
         routing.get do
-          all_messages = FetchMessages.new(App.config, @current_account).call(other_account:)
+          all_messages = FetchMessages.new(App.config, @current_account).call(other_username:)
           messages = Messages.new(all_messages)
           view :message, locals: { chatrooms: @chatrooms, messages:,
-                                   other_account:,
+                                   other_username:,
                                    account_id: @current_account.account_id }
         end
 
@@ -31,13 +31,13 @@ module Labook
           content = Form::Message.new.call(routing.params)
 
           if content.failure?
-            routing.redirect "#{@message_route}/#{other_account}"
+            routing.redirect "#{@message_route}/#{other_username}"
           end
 
           new_chat = CreateChat.new(App.config, @current_account)
-                               .call(other_account:, **content.values)
+                               .call(other_username:, **content.values)
 
-          routing.redirect "#{@message_route}/#{other_account}"
+          routing.redirect "#{@message_route}/#{other_username}"
         rescue StandardError => e
           response.status = 500
           routing.redirect @message_route
