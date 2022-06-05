@@ -13,7 +13,9 @@ module Labook
           if @current_account.logged_in?
             posts_list = FetchPosts.new(App.config).my_posts(@current_account)
             posts = Posts.new(posts_list) unless posts_list.nil?
-            view :account, locals: { current_account: @current_account, all_posts: posts }
+            view :account, locals: { current_account: @current_account,
+                                     all_posts: posts,
+                                     line_notify_oauth_url: GenerateLineNotifyAuth.new(App.config).call}
           else
             routing.redirect '/auth/login'
           end
