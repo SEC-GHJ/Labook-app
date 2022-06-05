@@ -113,9 +113,6 @@ module Labook
       end
 
       routing.on 'line_callback' do
-        puts routing.params
-        puts @state
-
         # check state is the same
         authorized = AuthorizeLineAccount
                      .new(App.config)
@@ -129,6 +126,25 @@ module Labook
         CurrentSession.new(session).current_account = current_account
         flash[:notice] = "Welcome #{current_account.email}!"
         routing.redirect '/'
+      rescue AuthorizeLineAccount::UnauthorizedLineError => e
+        App.logger.error "Could not connect with Line: #{e.inspect}"
+        flash[:error] = 'Could not connect with Line'
+        routing.redirect '/'
+      end
+
+      routing.on 'line_notify_callback' do
+        # check state is the same
+        authorized = AuthorizeLineNotify
+                     .new(App.config, @current_account)
+                     .call(routing.params['code'])
+        current_account = Account.new(
+          authorized[:account],
+          @current_account.auth_token
+        )
+
+        CurrentSession.new(session).current_account = current_account
+        flash[:notice] = "Successfully connect with Line Notify"
+        routing.redirect '/account'
       end
     end
   end

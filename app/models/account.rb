@@ -38,6 +38,10 @@ module Labook
       @account_info ? @account_info['email'] : nil
     end
 
+    def can_notify?
+      @account_info ? @account_info['can_notify'] : false
+    end
+
     def logged_out?
       @account_info.nil?
     end
