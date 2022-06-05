@@ -16,8 +16,9 @@ module Labook
       response.parse['data']
     end
 
-    def single(post_id)
-      response = HTTP.get("#{@config.API_URL}/posts/#{post_id}")
+    def single(post_id, current_account)
+      response = HTTP.auth("Bearer #{current_account.auth_token}")
+                     .get("#{@config.API_URL}/posts/#{post_id}")
       raise unless response.code == 200
 
       response.parse

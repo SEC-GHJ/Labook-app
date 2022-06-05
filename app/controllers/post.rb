@@ -10,8 +10,8 @@ module Labook
       routing.on do
         # GET /post/{post_id}
         routing.on String do |post_id|
-          single_post = FetchPosts.new(App.config).single(post_id)
-          post = Post.new(single_post)
+          single_post = FetchPosts.new(App.config).single(post_id, @current_account)
+          post = Post.new(single_post, giving_policies=true)
           view :post, locals: { single_post: post }
         end
       end
