@@ -166,7 +166,11 @@
   min-width: 17em;
   max-width: 540px;
 }
-
+.card-department {
+  border-radius: 2rem;
+  cursor: pointer;
+  max-width: 540px;
+}
 .post_content{
   overflow:hidden;
   white-space: nowrap;
