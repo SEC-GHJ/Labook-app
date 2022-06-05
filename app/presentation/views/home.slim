@@ -1,39 +1,8 @@
 div class="row row-cols-lg-8 row-cols-xs-2 gy-2" style="margin-top:15px"
-  div class="col"
-    span class="dropdown"
-      div class="text-left" id="home-text-black" year
-  div class="col"
-      button type="button" class="btn btn-info btn-sm dropdown-toggle" data-bs-toggle="dropdown" year
-      ul class="dropdown-menu"
-        li class="dropdown-item" href="#" 2020
-        li class="dropdown-item" href="#" 2021
-        li class="dropdown-item" href="#" 2022
-  div class="col"
-    div class="text-left" id="home-text-black" school 
-  div class="col"
-    span class="dropdown"
-    button type="button" class="btn btn-info btn-sm dropdown-toggle" data-bs-toggle="dropdown" school
-    ul class="dropdown-menu"
-      li class="dropdown-item" href="#" NTU
-      li class="dropdown-item" href="#" NTHU
-      li class="dropdown-item" href="#" NCCU 
-  div class="col"
-    div class="text-left" id="home-text-black" department
-  div class="col"
-    span class="dropdown"
-      button type="button" class="btn btn-info btn-sm dropdown-toggle" data-bs-toggle="dropdown" department
-      ul class="dropdown-menu"
-        li class="dropdown-item" href="#" ISS 
-        li class="dropdown-item" href="#" CS 
-        li class="dropdown-item" href="#" COM  
-  div class="col"
-    div class="text-left" id="home-text-black" lab 
-  div class="col" 
-    span class="dropdown"
-      button type="button" class="btn btn-info btn-sm dropdown-toggle" data-bs-toggle="dropdown" lab
-      ul class="dropdown-menu"
-        li class="dropdown-item" href="#" ISS 
-        li class="dropdown-item" href="#" CS 
-        li class="dropdown-item" href="#" COM
-
-== render :all_posts, locals: {all_posts: all_posts}
+div class="container my-3 post_container"
+  div class="row row-cols-xl-6 row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1"
+      - nthu_department.each do |dep|
+        div class="col post_font"
+          div class="card card-department mb-3 border border-2 p-2" onclick="location.href='/account';"
+            div class="department align-items-center text-center" = dep['department']
+== render :prof_info, locals: {nthu_department: nthu_department}

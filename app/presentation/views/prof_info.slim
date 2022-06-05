@@ -1,0 +1,12 @@
+div class="container my-5 post_container"
+  div class="row row-cols-xl-6 row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1"
+      - nthu_department.each do |dep|
+        - unless dep['profs'] .nil?
+            div class="col post_font"
+                div  class="card card-department mb-3 border border-2 p-2" type="checkbox"
+                    div  class="department align-items-center text-center" = dep['department']
+            - for prof in dep['profs']
+                p id="prof" = prof 
+                javascript: 
+                    function showProf() {document.getElementById("prof").innerHTML = prof;} 
+            
