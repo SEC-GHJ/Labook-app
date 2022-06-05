@@ -14,6 +14,13 @@ module Labook
           post = Post.new(single_post, giving_policies=true)
           view :post, locals: { single_post: post }
         end
+        # GET /post
+        routing.get do
+          all_posts = FetchPosts.new(App.config).call
+          posts = Posts.new(all_posts)
+          view 'all_posts', locals: { current_account: @current_account,
+            all_posts: posts,}
+        end
       end
     end
   end
