@@ -19,6 +19,16 @@ module Labook
       end
 
       routing.on String do |other_account_id|
+        routing.on 'new' do
+          chatroom = CreateChatroom.new(App.config, @current_account).call(other_account_id:)
+
+          routing.redirect "#{@message_route}/#{other_account_id}"
+        rescue StandardError => e
+          response.status = 500
+          flash[:error] = 'Failed! Please try again later.'
+          routing.redirect "/account/#{other_account_id}"
+        end
+
         routing.get do
           other_username = @chatrooms.all.select{ |chatroom|
             chatroom.account_id == other_account_id

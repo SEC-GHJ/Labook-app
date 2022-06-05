@@ -44,7 +44,7 @@ div class="row" style="margin-top: 3rem"
         div class="col-10  post_align"
           div class="row text-muted" style="font-size: 0.8em;"
             - if single_comment.policies.can_view
-              p style="margin-bottom: 0.1em;" id="post_can_view" onclick="location.href='/account/#{single_post.poster_id}';" = single_comment.num
+              p style="margin-bottom: 0.1em;" id="post_can_view" onclick="location.href='/account/#{single_comment.commenter_id}';" = single_comment.num
             - else 
               p style="margin-bottom: 0.1em;" = single_comment.num
             p style="margin-bottom: 0.1em;" = single_comment.created_at
