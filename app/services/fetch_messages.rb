@@ -10,9 +10,9 @@ module Labook
       @current_account = current_account
     end
 
-    def call(other_username:)
+    def call(other_account_id:)
       response = HTTP.auth("Bearer #{@current_account.auth_token}")
-                     .get("#{@config.API_URL}/chats/#{other_username}")
+                     .get("#{@config.API_URL}/chats/#{other_account_id}")
       raise unless response.code == 200
 
       response.parse

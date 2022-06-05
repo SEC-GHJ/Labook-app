@@ -9,10 +9,10 @@ div class="container my-5"
             input type="text" class="form-control" placeholder="Search..."
           ul class="list-unstyled chat-list mt-2 mb-0"
             - chatrooms.all.each do |chatroom|
-              li class="clearfix" onclick="location.href='/messages/#{chatroom.account}';"
+              li class="clearfix" onclick="location.href='/messages/#{chatroom.account_id}';"
                 img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar"
                 div class="about"
-                  div class="name" = chatroom.account
+                  div class="name" = chatroom.username
                   div class="status" 
                     i class="fa fa-circle offline" 
                     = " left 7 mins ago"
@@ -71,7 +71,7 @@ div class="container my-5"
                       div class="message my-message" = single_message.content
 
             div class="chat-message clearfix"
-              form role="form" action="/messages/#{other_username}" method='post' class="input-group mb-0"
+              form role="form" action="/messages/#{other_account_id}" method='post' class="input-group mb-0"
                 input type="text" class="form-control" name="content" placeholder="Enter text here..."                                    
                 div class="input-group-text"
                   button type='submit' class="btn submit" id='message-form-submit' value='submit'

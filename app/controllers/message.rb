@@ -18,12 +18,16 @@ module Labook
         end
       end
 
-      routing.on String do |other_username|
+      routing.on String do |other_account_id|
         routing.get do
-          all_messages = FetchMessages.new(App.config, @current_account).call(other_username:)
+          other_username = @chatrooms.all.select{ |chatroom|
+            chatroom.account_id == other_account_id
+          }[0].username
+          all_messages = FetchMessages.new(App.config, @current_account).call(other_account_id:)
           messages = Messages.new(all_messages)
           view :message, locals: { chatrooms: @chatrooms, messages:,
                                    other_username:,
+                                   other_account_id:,
                                    account_id: @current_account.account_id }
         end
 
