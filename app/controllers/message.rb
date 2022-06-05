@@ -35,13 +35,13 @@ module Labook
           content = Form::Message.new.call(routing.params)
 
           if content.failure?
-            routing.redirect "#{@message_route}/#{other_username}"
+            routing.redirect "#{@message_route}/#{other_account_id}"
           end
 
           new_chat = CreateChat.new(App.config, @current_account)
-                               .call(other_username:, **content.values)
+                               .call(other_account_id:, **content.values)
 
-          routing.redirect "#{@message_route}/#{other_username}"
+          routing.redirect "#{@message_route}/#{other_account_id}"
         rescue StandardError => e
           response.status = 500
           routing.redirect @message_route

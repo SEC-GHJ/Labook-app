@@ -134,6 +134,12 @@
   font-weight: 500;
 }
 
+#post_can_view{
+  color: #345688;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .vote_sum{
   margin-bottom: 0;
 }
