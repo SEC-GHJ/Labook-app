@@ -7,12 +7,12 @@ div class="container my-5"
             div class="input-group-text"
               span class="fa fa-search"
             input type="text" class="form-control" placeholder="Search..."
-          - chatrooms.all.each do |chatroom|
-            ul class="list-unstyled chat-list mt-2 mb-0"
-              li class="clearfix" onclick="location.href='/messages/#{chatroom.account}';"
+          ul class="list-unstyled chat-list mt-2 mb-0"
+            - chatrooms.all.each do |chatroom|
+              li class="clearfix" onclick="location.href='/messages/#{chatroom.account_id}';"
                 img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar"
                 div class="about"
-                  div class="name" = chatroom.account
+                  div class="name" = chatroom.username
                   div class="status" 
                     i class="fa fa-circle offline" 
                     = " left 7 mins ago"
@@ -43,8 +43,8 @@ div class="container my-5"
                     img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar"
       
                   div class="chat-about"
-                    h6 class="m-b-0" = other_account
-                    / small Last seen: 2 hours ago
+                    h6 class="m-b-0" = other_username
+                    small = "Last seen: #{messages.last_seen} ago"
                 / div class="col-lg-6 hidden-sm text-end"
                 /   a href="javascript:void(0);" class="btn btn-outline-secondary"
                 /     i class="fa fa-camera"
@@ -55,10 +55,9 @@ div class="container my-5"
                 /   a href="javascript:void(0);" class="btn btn-outline-warning"
                 /     i class="fa fa-question"
                 
-            
-            - messages.all.each do |single_message|
-              div class="chat-history"
-                ul class="m-b-0"
+            div class="chat-history"
+              ul class="m-b-0"
+                - messages.all.each do |single_message|    
                   - if single_message.sender_id == account_id
                     li class="clearfix"
                       div class="message-data text-end"
@@ -72,7 +71,7 @@ div class="container my-5"
                       div class="message my-message" = single_message.content
 
             div class="chat-message clearfix"
-              form role="form" action="/messages/#{other_account}" method='post' class="input-group mb-0"
+              form role="form" action="/messages/#{other_account_id}" method='post' class="input-group mb-0"
                 input type="text" class="form-control" name="content" placeholder="Enter text here..."                                    
                 div class="input-group-text"
                   button type='submit' class="btn submit" id='message-form-submit' value='submit'

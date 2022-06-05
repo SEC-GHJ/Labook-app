@@ -2,16 +2,31 @@
 
 require 'roda'
 require_relative './app'
+require 'uri'
 
 module Labook
   # Web controller for Labook API
   class App < Roda
+    def line_oauth_url(config)
+      url = config.LINE_OAUTH_URL
+      @state = SecureRandom.hex(10)
+      data = {
+        response_type: 'code',
+        client_id: config.LINE_CHANNEL_ID,
+        redirect_uri: config.LINE_REDIRECT_URI,
+        scope: config.LINE_SCOPE,
+        state: @state
+      }
+      query = URI.encode_www_form(data).gsub('+', '%20')
+      "#{url}/?#{query}"
+    end
+
     route('auth') do |routing|
       @login_route = '/auth/login'
       routing.is 'login' do
         # GET /auth/login
         routing.get do
-          view :login
+          view :login, locals: { line_oauth_url: line_oauth_url(App.config) }
         end
 
         # POST /auth/login
@@ -32,7 +47,7 @@ module Labook
 
           CurrentSession.new(session).current_account = current_account
 
-          flash[:notice] = "Welcome back #{current_account.account}!"
+          flash[:notice] = "Welcome back #{current_account.username}!"
           routing.redirect '/'
         rescue AuthenticateAccount::UnauthorizedError
           flash.now[:error] = 'Account and password did not match our records'
@@ -61,7 +76,7 @@ module Labook
         routing.is do
           # Get /auth/register
           routing.get do
-            view :register
+            view :register, locals: { line_oauth_url: line_oauth_url(App.config) }
           end
 
           # Post /auth/register
@@ -95,6 +110,41 @@ module Labook
           view :register_confirm,
                locals: { new_account:, registration_token: }
         end
+      end
+
+      routing.on 'line_callback' do
+        # check state is the same
+        authorized = AuthorizeLineAccount
+                     .new(App.config)
+                     .call(routing.params['code'])
+
+        current_account = Account.new(
+          authorized[:account],
+          authorized[:auth_token]
+        )
+        
+        CurrentSession.new(session).current_account = current_account
+        flash[:notice] = "Welcome #{current_account.email}!"
+        routing.redirect '/'
+      rescue AuthorizeLineAccount::UnauthorizedLineError => e
+        App.logger.error "Could not connect with Line: #{e.inspect}"
+        flash[:error] = 'Could not connect with Line'
+        routing.redirect '/'
+      end
+
+      routing.on 'line_notify_callback' do
+        # check state is the same
+        authorized = AuthorizeLineNotify
+                     .new(App.config, @current_account)
+                     .call(routing.params['code'])
+        current_account = Account.new(
+          authorized[:account],
+          @current_account.auth_token
+        )
+
+        CurrentSession.new(session).current_account = current_account
+        flash[:notice] = "Successfully connect with Line Notify"
+        routing.redirect '/account'
       end
     end
   end

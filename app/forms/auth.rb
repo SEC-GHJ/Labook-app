@@ -7,7 +7,7 @@ module Labook
     # Login Credentials
     class LoginCredentials < Dry::Validation::Contract
       params do
-        required(:account).filled
+        required(:username).filled
         required(:password).filled
       end
     end
@@ -17,11 +17,18 @@ module Labook
       config.messages.load_paths << File.join(__dir__, 'errors/account_details.yml')
 
       params do
-        required(:account).filled(format?: USERNAME_REGEX, min_size?: 4)
+        required(:username).filled(format?: USERNAME_REGEX, min_size?: 4)
         required(:email).filled(format?: EMAIL_REGEX)
-        required(:ori_school).filled
-        required(:ori_department).filled
+      end
+    end
+
+    # Registration
+    class Profile < Dry::Validation::Contract
+      params do
+        required(:nickname).filled
         required(:gpa).filled
+        required(:ori_department).filled
+        required(:ori_school).filled
       end
     end
 

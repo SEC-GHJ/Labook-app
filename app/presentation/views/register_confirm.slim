@@ -8,16 +8,19 @@ div class="row"
     h3 class="text-center" id='login-text' Create an Account  
     form method='post' action='/account/#{registration_token}' id='form-login'
       div
-        label for='input-username' id='login-text' Account
+        label for='input-username' id='login-text' Username 
       div class="col-sm-5 col-6" id="login-text-gray"
-        == new_account['account']
+        == new_account['username']
       div
         label for='input-password' id='login-text' Email    
       div class="col-sm-5 col-6" id="login-text-gray"
         == new_account['email']
       div 
-        label for='input-password' id='login-text' GPA
-        input type='text' name='gpa' id='input-username' class="form-control" value=new_account['gpa']
+        label for='input-nickname' id='login-text' Nickname
+        input type='text' name='nickname' id='input-nickname' class="form-control" value=new_account['nickname']
+      div 
+        label for='input-gpa' id='login-text' GPA
+        input type='text' name='gpa' id='input-gpa' class="form-control" value=new_account['gpa']
       div
         label id='login-text' Undergraduate School     
         input type='text' name='ori_school' id='input-username' class="form-control" value=new_account['ori_school']
@@ -30,6 +33,6 @@ div class="row"
       div
         label for='password_confirm_input' id='login-text'  Re-enter Password
         input type='password' name='password_confirm' id='input-password' class="form-control"      
-      button type='submit' id='button-login' value='submit' Submit 
+      button type='submit' id='button-login' class="button-login" value='submit' Submit 
 
   div class="col"

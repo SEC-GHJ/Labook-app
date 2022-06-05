@@ -255,8 +255,19 @@ body{
     }
 }
 
+@media only screen and (min-width: 1024px) {
+    .chat-app .chat-list {
+        height: 650px;
+        overflow-x: auto
+    }
+
+    .chat-app .chat-history {
+        height: 600px;
+        overflow-x: auto
+    }
+}
+
 .people-list,
-.chat {
-    height: 600px;
+.chat-history {
     overflow-y: scroll;
 }

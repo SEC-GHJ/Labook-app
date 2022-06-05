@@ -18,22 +18,33 @@ module Labook
         end
       end
 
-      routing.on String do |other_account|
+      routing.on String do |other_account_id|
         routing.get do
-          all_messages = FetchMessages.new(App.config, @current_account).call(other_account:)
+          other_username = @chatrooms.all.select{ |chatroom|
+            chatroom.account_id == other_account_id
+          }[0].username
+          all_messages = FetchMessages.new(App.config, @current_account).call(other_account_id:)
           messages = Messages.new(all_messages)
           view :message, locals: { chatrooms: @chatrooms, messages:,
-                                   other_account:,
+                                   other_username:,
+                                   other_account_id:,
                                    account_id: @current_account.account_id }
         end
 
         routing.post do
-          content = routing.params
-          new_chat = CreateChat.new(App.config, @current_account)
-                               .call(other_account:, content:)
-          raise if new_chat.nil?
+          content = Form::Message.new.call(routing.params)
 
-          routing.redirect "#{@message_route}/#{other_account}"
+          if content.failure?
+            routing.redirect "#{@message_route}/#{other_username}"
+          end
+
+          new_chat = CreateChat.new(App.config, @current_account)
+                               .call(other_username:, **content.values)
+
+          routing.redirect "#{@message_route}/#{other_username}"
+        rescue StandardError => e
+          response.status = 500
+          routing.redirect @message_route
         end
       end
     end

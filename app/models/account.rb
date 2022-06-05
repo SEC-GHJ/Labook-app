@@ -10,8 +10,12 @@ module Labook
 
     attr_reader :account_info, :auth_token
 
-    def account
-      @account_info ? @account_info['account'] : nil
+    def username
+      @account_info ? @account_info['username'] : nil
+    end
+
+    def nickname
+      @account_info ? @account_info['nickname'] : nil
     end
 
     def account_id
@@ -32,6 +36,10 @@ module Labook
 
     def email
       @account_info ? @account_info['email'] : nil
+    end
+
+    def can_notify?
+      @account_info ? @account_info['can_notify'] : false
     end
 
     def logged_out?

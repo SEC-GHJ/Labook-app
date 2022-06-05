@@ -5,9 +5,9 @@ require 'webmock/minitest'
 
 describe 'Test Service Objects' do
   before do
-    @credentials = { account: 'a1', password: 'password1' }
-    @mal_credentials = { account: 'a1', password: 'wrongpassword' }
-    @api_account = { account: 'a1', gpa: '3.4', ori_school: 'NTHU', ori_department: 'CS', email: 'a1@gmail.com' }
+    @credentials = { username: 'a1', password: 'password1' }
+    @mal_credentials = { username: 'a1', password: 'wrongpassword' }
+    @api_account = { username: 'a1', nickname: '大帥哥', gpa: '3.4', ori_school: 'NTHU', ori_department: 'CS', email: 'a1@gmail.com' }
   end
 
   after do
@@ -34,7 +34,8 @@ describe 'Test Service Objects' do
 
       account = auth[:account]
       _(account).wont_be_nil
-      _(account['account']).must_equal @api_account[:account]
+      _(account['username']).must_equal @api_account[:username]
+      _(account['nickname']).must_equal @api_account[:nickname]
       _(account['gpa']).must_equal @api_account[:gpa]
       _(account['ori_school']).must_equal @api_account[:ori_school]
       _(account['ori_department']).must_equal @api_account[:ori_department]
