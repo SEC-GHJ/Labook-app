@@ -124,7 +124,7 @@ module Labook
         )
         
         CurrentSession.new(session).current_account = current_account
-        flash[:notice] = "Welcome #{current_account.email}!"
+        flash[:notice] = "Welcome back #{current_account.email}!"
         routing.redirect '/'
       rescue AuthorizeLineAccount::UnauthorizedLineError => e
         App.logger.error "Could not connect with Line: #{e.inspect}"
