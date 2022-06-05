@@ -8,21 +8,6 @@ module Labook
   class App < Roda
     route('account') do |routing|
       routing.on do
-        routing.on String do |account_id|
-          if @current_account.logged_in? & @current_account.account_id == account_id
-            routing.redirect '/account'
-          elsif @current_account.logged_in?
-            
-            posts_list = FetchPosts.new(App.config).my_posts(@current_account)
-            posts = Posts.new(posts_list) unless posts_list.nil?
-            view :account, locals: { current_account: @current_account,
-                                     all_posts: posts,
-                                     line_notify_oauth_url: GenerateLineNotifyAuth.new(App.config).call}
-          else
-            routing.redirect '/auth/login'
-          end
-        end
-
         # GET /account
         routing.get do
           if @current_account.logged_in?
