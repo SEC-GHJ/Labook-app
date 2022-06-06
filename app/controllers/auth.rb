@@ -107,8 +107,9 @@ module Labook
         routing.get(String) do |registration_token|
           flash.now[:notice] = 'Email Verified! Please choose a new password'
           new_account = SecureMessage.decrypt(registration_token)
+          undergraduate_info = YAML.safe_load File.read('app/seeds/undergraduate_info.yml')
           view :register_confirm,
-               locals: { new_account:, registration_token: }
+               locals: { new_account:, registration_token:, undergraduate_info: }
         end
       end
 
@@ -122,7 +123,7 @@ module Labook
           authorized[:account],
           authorized[:auth_token]
         )
-        
+
         CurrentSession.new(session).current_account = current_account
         flash[:notice] = "Welcome back #{current_account.email}!"
         routing.redirect '/'
@@ -143,7 +144,7 @@ module Labook
         )
 
         CurrentSession.new(session).current_account = current_account
-        flash[:notice] = "Successfully connect with Line Notify"
+        flash[:notice] = 'Successfully connect with Line Notify'
         routing.redirect '/account'
       end
     end

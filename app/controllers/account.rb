@@ -19,7 +19,7 @@ module Labook
 
             view :account, locals: { current_account: others_account_obj,
                                      all_posts: nil,
-                                     line_notify_oauth_url: nil}
+                                     line_notify_oauth_url: nil }
           else
             routing.redirect '/auth/login'
           end
@@ -35,7 +35,7 @@ module Labook
             posts = Posts.new(posts_list) unless posts_list.nil?
             view :account, locals: { current_account: @current_account,
                                      all_posts: posts,
-                                     line_notify_oauth_url: GenerateLineNotifyAuth.new(App.config).call}
+                                     line_notify_oauth_url: GenerateLineNotifyAuth.new(App.config).call }
           else
             routing.redirect '/auth/login'
           end
