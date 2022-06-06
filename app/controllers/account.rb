@@ -12,15 +12,20 @@ module Labook
           if @current_account.logged_in? & @current_account.account_id == account_id
             routing.redirect '/account'
           elsif @current_account.logged_in?
-            
-            posts_list = FetchPosts.new(App.config).my_posts(@current_account)
-            posts = Posts.new(posts_list) unless posts_list.nil?
-            view :account, locals: { current_account: @current_account,
-                                     all_posts: posts,
-                                     line_notify_oauth_url: GenerateLineNotifyAuth.new(App.config).call}
+            others_account = FetchOthersAccount.new(App.config, @current_account).call(account_id)
+            raise('Unauthorized to access this account information.') if others_account.nil?
+
+            others_account_obj = Account.new(others_account, nil, true)
+
+            view :account, locals: { current_account: others_account_obj,
+                                     all_posts: nil,
+                                     line_notify_oauth_url: nil}
           else
             routing.redirect '/auth/login'
           end
+        rescue StandardError => e
+          flash[:error] = e.message
+          routing.redirect '/'
         end
 
         # GET /account

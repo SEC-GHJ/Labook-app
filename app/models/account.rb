@@ -3,12 +3,21 @@
 module Labook
   # Behaviors of the currently logged in account
   class Account
-    def initialize(account_info, auth_token = nil)
-      @account_info = account_info
+    def initialize(account_info, auth_token = nil, giving_policies=false)
+      if giving_policies
+        @account_info = account_info['attributes']
+        process_policies(account_info['policies'])
+      else
+        @account_info = account_info
+      end
       @auth_token = auth_token
     end
 
-    attr_reader :account_info, :auth_token
+    attr_reader :account_info, :auth_token, :policies
+
+    def process_policies(policies)
+      @policies = OpenStruct.new(policies)
+    end
 
     def username
       @account_info ? @account_info['username'] : nil

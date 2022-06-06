@@ -26,7 +26,7 @@ module Labook
 
       @comments = post_info['include']['comments'].each_with_index.map do |comment, num|
         if giving_policies
-          Comment.new(comment, num, giving_policies=true)
+          Comment.new(comment, num, true)
         else
           Comment.new(comment, num)
         end

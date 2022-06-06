@@ -22,7 +22,7 @@ module Labook
         Message.new(message)
       end
 
-      @last_seen = duration(all.last.created_at)
+      @last_seen = all.last.nil? ? nil : duration(all.last.created_at)
     end
   end
 end

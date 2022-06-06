@@ -28,21 +28,30 @@ div class="row"
       div class="col-sm-5 col-6" id="login-text" Original Department:
       div class="col-sm-5 col-6" id="login-text-gray"
         == current_account.ori_department
-    hr
-    div class="row my-3"
-      - if current_account.can_notify?
-        button {
-          class="btn btn-outline-success disabled"
-          type="button" disable="disabled"
-        }
-          span.bi.bi-check-circle  Line Notification
-      - else 
-        button {
-          type="button"
-          class="btn btn-outline-danger"
-          onclick="location.href='#{line_notify_oauth_url}';"
-        }
-          span.bi.bi-patch-exclamation  LINE Notification
+    
+    - if line_notify_oauth_url.nil?
+      - if current_account.policies.can_mail
+        hr
+        div class="row my-3"
+            button class="btn btn-outline-success" onclick="location.href='/messages/#{current_account.account_id}/new'" type="button" 
+             == 'Message me now'
+
+    - else
+      hr
+      div class="row my-3"
+        - if current_account.can_notify?
+          button {
+            class="btn btn-outline-success disabled"
+            type="button" disable="disabled"
+          }
+            span.bi.bi-check-circle  Line Notification
+        - else 
+          button {
+            type="button"
+            class="btn btn-outline-danger"
+            onclick="location.href='#{line_notify_oauth_url}';"
+          }
+            span.bi.bi-patch-exclamation  LINE Notification
 
   div class="col"
 
