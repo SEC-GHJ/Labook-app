@@ -5,7 +5,7 @@ module Labook
   class Post
     attr_reader :lab_name, :school, :department, :professor,
                 :post_id, :poster_id, :lab_score, :professor_attitude, :content, :accept_mail, :vote_sum, :created_at,
-                :comments, :policies
+                :comments, :policies, :voted_number
 
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
@@ -35,6 +35,7 @@ module Labook
       @comments.sort_by!(&:vote_sum).reverse!
 
       process_policies(post_info['policies']) if giving_policies
+      @voted_number = post_info['voted_number'] if giving_policies
     end
     # rubocop:enable Metrics/MethodLength
     # rubocop:enable Metrics/AbcSize

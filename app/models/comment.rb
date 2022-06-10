@@ -3,7 +3,7 @@
 module Labook
   # Behaviors of the currently logged in account
   class Comment
-    attr_reader :content, :commenter_id, :accept_mail, :vote_sum, :created_at, :num, :policies
+    attr_reader :content, :commenter_id, :accept_mail, :vote_sum, :created_at, :num, :policies, :voted_number
 
     def initialize(comment_info, num, giving_policies=false)
       comment_info = comment_info[0]
@@ -15,6 +15,7 @@ module Labook
       @created_at = comment_info['attributes']['created_at']
 
       process_policies(comment_info['policies']) if giving_policies
+      @voted_number = comment_info['voted_number'] if giving_policies
     end
 
     def process_policies(policies)

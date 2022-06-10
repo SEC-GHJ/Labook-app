@@ -23,11 +23,8 @@ module Labook
 
       # GET /
       routing.root do
-        all_posts = FetchPosts.new(App.config).call
-        posts = Posts.new(all_posts)
         nthu_department = YAML.safe_load File.read('app/seeds/department.yml')
         view 'home', locals: { current_account: @current_account,
-                               all_posts: posts,
                                nthu_department: }
       end
     end
