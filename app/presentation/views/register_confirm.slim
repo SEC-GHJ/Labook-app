@@ -1,7 +1,6 @@
 / Fontawesome and Bootstrap-Social for Github buttons
 link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"
 / link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.0.0/bootstrap-social.css" integrity="sha384-KMis1ci1uYEByUqyQ+ys92P9u9WtqmYQmUvEpXsB5BuMYyTHljPVNJ24Jl6ib3o8" crossorigin="anonymous"
-
 div class="row"
   div class="col"
   div class="col-sm-2" id='regis-border'
@@ -22,11 +21,22 @@ div class="row"
         label for='input-gpa' id='login-text' GPA
         input type='text' name='gpa' id='input-gpa' class="form-control" value=new_account['gpa']
       div
-        label id='login-text' Undergraduate School     
-        input type='text' name='ori_school' id='input-username' class="form-control" value=new_account['ori_school']
+        label id='login-text' Undergraduate School   
+      div
+        script src="register.js"
+        select class="dropdown" name="ori-department" id="ori-select"
+          option type="button" class="btn-info btn-sm dropdown-toggle text-left" data-bs-toggle="dropdown" onchange="getSchool()" Select School
+          - undergraduate_info.each do |school|
+            option  value=new_account['ori_school'] class="dropdown-item" = school['school']  
       div
         label for='input-password' id='login-text' Undergraduate Major
-        input type='text' name='ori_department' id='input-username' class="form-control" value=new_account['ori_department']
+      div 
+        select class="dropdown" name="ori-department" id="depart-select"
+          option type="button" class="btn-info btn-sm dropdown-toggle text-left" data-bs-toggle="dropdown" Select Department
+          - undergraduate_info.each do |school|
+            - if school == school
+              - for depart in school['department']
+                option  value=new_account['ori_department'] class="dropdown-item" = depart
       div
         label for='input-password' id='login-text' Password
         input type='password' name='password' id='input-password' class="form-control"
