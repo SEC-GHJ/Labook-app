@@ -111,6 +111,18 @@ module Labook
           view :register_confirm,
                locals: { new_account:, registration_token:, undergraduate_info: }
         end
+
+        @register_line_route = "#{@register_route}/line"
+        # Get /auth/register/line/<token>
+        routing.on 'line' do
+          routing.get(String) do |registration_token|
+            flash.now[:notice] = 'Line Verified! Please choose a new password'
+            new_account = SecureMessage.decrypt(registration_token)
+            undergraduate_info = YAML.safe_load File.read('app/seeds/undergraduate_info.yml')
+            view :register_line_confirm,
+                locals: { new_account:, registration_token:, undergraduate_info: }
+          end
+        end
       end
 
       routing.on 'line_callback' do
@@ -127,6 +139,9 @@ module Labook
         CurrentSession.new(session).current_account = current_account
         flash[:notice] = "Welcome back #{current_account.email}!"
         routing.redirect '/'
+      rescue AuthorizeLineAccount::UserNotFound => e
+        puts e
+        routing.redirect "#{@register_route}/line/#{e.line_register_url}"
       rescue AuthorizeLineAccount::UnauthorizedLineError => e
         App.logger.error "Could not connect with Line: #{e.inspect}"
         flash[:error] = 'Could not connect with Line'
