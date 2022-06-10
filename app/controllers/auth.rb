@@ -96,8 +96,13 @@ module Labook
             App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
             flash[:error] = 'Our servers are not responding -- please try later'
             routing.redirect @register_route
+          rescue VerifyRegistration::VerificationError => e
+            # flash[:error] = "#{JSON.parse(e.message)["message"]}"
+            App.logger.warn "Could not verify registration: #{JSON.parse(e.message)["message"]}"
+            flash[:error] = "Username or email has existed"
+            routing.redirect @register_route
           rescue StandardError => e
-            App.logger.error "Could not verify registration: #{e.inspect}"
+            App.logger.error "Could not verify registration: #{e.message}"
             flash[:error] = 'Please use English characters for account only'
             routing.redirect @register_route
           end
