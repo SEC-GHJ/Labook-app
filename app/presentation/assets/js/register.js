@@ -1,4 +1,4 @@
-function getSchool(){
+function getschool(){
     var schoolElement = document.getElementById("ori-select").value;
-    alert(schoolElement);
+    console.log(schoolElement);
 }
