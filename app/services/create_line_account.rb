@@ -24,16 +24,15 @@ module Labook
                   gpa: profile_info['gpa'],
                   ori_department: profile_info['ori_department'],
                   ori_school: profile_info['ori_school'],
-                  line_id: line_info['line_id']
+                  line_id: line_info['line_id'],
+                  show_all: false,
+                  accept_mail: false
                 }
 
       response = HTTP.post(
         "#{@config.API_URL}/accounts",
         json: message
       )
-
-      puts 'create line account:'
-      puts response
 
       raise InvalidAccount unless response.code == 201
     end

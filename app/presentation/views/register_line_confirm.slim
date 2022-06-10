@@ -22,10 +22,21 @@ div class="row"
         input type='text' name='gpa' id='input-gpa' class="form-control" value=new_account['gpa']
       div
         label id='login-text' Undergraduate School     
-        input type='text' name='ori_school' id='input-username' class="form-control" value=new_account['ori_school']
       div
-        label for='input-password' id='login-text' Undergraduate Major
-        input type='text' name='ori_department' id='input-username' class="form-control" value=new_account['ori_department']
+        script src="register.js"
+        select class="dropdown" name="ori_school" id="ori-select"
+          option type="button" class="btn-info btn-sm dropdown-toggle text-left" data-bs-toggle="dropdown" onchange="getSchool()" Select School
+          - undergraduate_info.each do |school|
+            option  value=new_account['ori_school'] class="dropdown-item" = school['school']  
+      div
+        label for='ori_department' id='login-text' Undergraduate Major
+      div 
+        select class="dropdown" name="ori_department" id="depart-select"
+          option type="button" class="btn-info btn-sm dropdown-toggle text-left" data-bs-toggle="dropdown" Select Department
+          - undergraduate_info.each do |school|
+            - if school == school
+              - for depart in school['department']
+                option  value=new_account['ori_department'] class="dropdown-item" = depart
       button type='submit' id='button-login' class="button-login" value='submit' Submit 
   div class="col"
 
