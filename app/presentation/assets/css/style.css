@@ -72,6 +72,32 @@
   margin-bottom: 3em;
   padding: 3em;
 }
+#ori-select {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 12px; /*文字大小*/
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 1000;
+  font-size: 1em;
+  color: #495057; /*文字顏色*/
+  background-color: #fff; /*選單背景顏色*/
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+ }
+ #depart-select {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 12px; /*文字大小*/
+  font-family: 'Fira Sans';
+  font-style: normal;
+  font-weight: 1000;
+  font-size: 1em;
+  color: #495057; /*文字顏色*/
+  background-color: #fff; /*選單背景顏色*/
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+ }
 #account-border{
   width: 35em;
   height: 24em;
