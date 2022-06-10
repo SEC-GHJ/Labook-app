@@ -52,12 +52,13 @@ module Labook
 
           passwords = Form::Passwords.new.call(routing.params)
           raise Form.message_values(passwords) if passwords.failure?
-
+          
           profile_info = Form::Profile.new.call(routing.params)
-
+          puts "profile: #{profile_info}"
+          puts "params: #{routing.params}"
           if profile_info.failure?
-            flash[:error] = Form.validation_errors(registration)
-            routing.redirect "#{@register_route}/#{registration_token}"
+            flash[:error] = Form.validation_errors(profile_info)
+            routing.redirect "/auth/register/#{registration_token}"
           end
 
           new_account = SecureMessage.decrypt(registration_token)
@@ -91,8 +92,8 @@ module Labook
             profile_info = Form::LineProfile.new.call(routing.params)
 
             if profile_info.failure?
-              flash[:error] = Form.validation_errors(registration)
-              routing.redirect "#{@register_route}/#{registration_token}"
+              flash[:error] = Form.validation_errors(profile_info)
+              routing.redirect "/account/line/#{registration_token}"
             end
 
             puts "profile_info:#{profile_info}"

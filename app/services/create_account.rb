@@ -7,7 +7,7 @@ module Labook
   class CreateAccount
     # Error for accounts that cannot be created
     class InvalidAccount < StandardError
-      def message = 'This account can no loger be created: please start again'
+      def message = 'This account can no loger be created. Please start again'
     end
 
     def initialize(config)
@@ -24,7 +24,9 @@ module Labook
                   ori_school:,
                   ori_department:,
                   password:,
-                  email: }
+                  email:,
+                  show_all: false,
+                  accept_mail: false }
 
       response = HTTP.post(
         "#{@config.API_URL}/accounts",

@@ -24,14 +24,14 @@ div class="row"
         label id='login-text' Undergraduate School   
       div
         script src="register.js"
-        select class="dropdown" name="ori-department" id="ori-select"
+        select class="dropdown" name="ori_school" id="ori-select"
           option type="button" class="btn-info btn-sm dropdown-toggle text-left" data-bs-toggle="dropdown" onchange="getSchool()" Select School
           - undergraduate_info.each do |school|
             option  value=new_account['ori_school'] class="dropdown-item" = school['school']  
       div
         label for='input-password' id='login-text' Undergraduate Major
       div 
-        select class="dropdown" name="ori-department" id="depart-select"
+        select class="dropdown" name="ori_department" id="depart-select"
           option type="button" class="btn-info btn-sm dropdown-toggle text-left" data-bs-toggle="dropdown" Select Department
           - undergraduate_info.each do |school|
             - if school == school
