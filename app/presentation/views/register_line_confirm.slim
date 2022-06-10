@@ -1,0 +1,31 @@
+/ Fontawesome and Bootstrap-Social for Github buttons
+link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous"
+/ link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.0.0/bootstrap-social.css" integrity="sha384-KMis1ci1uYEByUqyQ+ys92P9u9WtqmYQmUvEpXsB5BuMYyTHljPVNJ24Jl6ib3o8" crossorigin="anonymous"
+
+div class="row"
+  div class="col"
+  div class="col-sm-2" id='regis-border'
+    h3 class="text-center" id='login-text' Create an Account  
+    form method='post' action='/account/line/#{registration_token}' id='form-login'
+      div
+        label for='input-username' id='login-text' Username
+        input type='text' name='username' id='input-username' class="form-control" value=new_account['username']
+      div
+        label for='input-password' id='login-text' Email    
+      div class="col-sm-5 col-6" id="login-text-gray"
+        == new_account['email']
+      div 
+        label for='input-nickname' id='login-text' Nickname
+        input type='text' name='nickname' id='input-nickname' class="form-control" value=new_account['nickname']
+      div 
+        label for='input-gpa' id='login-text' GPA
+        input type='text' name='gpa' id='input-gpa' class="form-control" value=new_account['gpa']
+      div
+        label id='login-text' Undergraduate School     
+        input type='text' name='ori_school' id='input-username' class="form-control" value=new_account['ori_school']
+      div
+        label for='input-password' id='login-text' Undergraduate Major
+        input type='text' name='ori_department' id='input-username' class="form-control" value=new_account['ori_department']
+      button type='submit' id='button-login' class="button-login" value='submit' Submit 
+  div class="col"
+
