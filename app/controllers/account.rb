@@ -10,9 +10,7 @@ module Labook
       routing.on do
         routing.get do
           # GET /account/[account_id]
-          puts 'routing on account'
           routing.on String do |account_id|
-            puts 'routing account/string'
             if @current_account.logged_in? & @current_account.account_id == account_id
               routing.redirect '/account'
             elsif @current_account.logged_in?
@@ -29,7 +27,7 @@ module Labook
             end
           rescue StandardError => e
             flash[:error] = e.message
-            routing.redirect '/'
+            redirect back
           end
 
           # GET /account

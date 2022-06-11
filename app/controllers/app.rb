@@ -3,6 +3,7 @@
 require 'roda'
 require 'slim'
 require 'slim/include'
+require 'sinatra'
 
 module Labook
   # Base class for Labook Web Application
@@ -12,6 +13,7 @@ module Labook
     plugin :public, root: 'app/presentation/public'
     plugin :multi_route
     plugin :flash
+    plugin :sinatra_helpers
 
     route do |routing|
       response['Content-Type'] = 'text/html; charset=utf-8'

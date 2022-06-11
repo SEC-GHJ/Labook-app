@@ -7,6 +7,7 @@ ruby File.read('.ruby-version').strip
 gem 'puma'
 gem 'roda'
 gem 'slim'
+gem 'sinatra'
 
 # Configuration
 gem 'figaro'

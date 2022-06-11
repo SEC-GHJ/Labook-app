@@ -14,20 +14,42 @@ div class="row" style="margin-top: 3rem"
           h5 class="fw-bold text-dark" = single_post.lab_name
           p class="text-muted" = single_post.professor + "　教授"
       div class="col-2 text-center"
-        div
-          i class="bi bi-caret-up" style="font-size: 1.5rem;"
-        p class="vote_sum" = single_post.vote_sum
-        div
-          i class="bi bi-caret-down" style="font-size: 1.5rem;"
-        p class="vote_sum" = single_post.voted_number
-
+        - if !@current_account.logged_in?
+          div
+            i class="bi bi-caret-up" style="font-size: 1.5rem;"
+          p class="vote_sum" = single_post.vote_sum
+          div
+            i class="bi bi-caret-down" style="font-size: 1.5rem;"
+        
+        - elsif single_post.voted_number == 0
+          div
+            i class="bi bi-caret-up" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/post/#{single_post.post_id}/votes/1';"
+          p class="vote_sum" = single_post.vote_sum
+          div
+            i class="bi bi-caret-down" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/post/#{single_post.post_id}/votes/-1';"
+        
+        - elsif single_post.voted_number == 1
+          div
+            i class="bi bi-caret-up-fill" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/post/#{single_post.post_id}/votes/0';"
+          p class="vote_sum" = single_post.vote_sum
+          div
+            i class="bi bi-caret-down" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/post/#{single_post.post_id}/votes/-1';"
+        
+        - elsif single_post.voted_number == -1
+          div
+            i class="bi bi-caret-up" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/post/#{single_post.post_id}/votes/1';"
+          p class="vote_sum" = single_post.vote_sum
+          div
+            i class="bi bi-caret-down-fill" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/post/#{single_post.post_id}/votes/0';"
 
     div class="col post_align"
       div class="row text-muted" style="font-size: 0.8em;"
-        - if single_post.policies.can_view
-          p  style="margin-bottom: 0.1em;" id="post_can_view" onclick="location.href='/account/#{single_post.poster_id}';" B0
-        - else
-          p  style="margin-bottom: 0.1em;" B0
+        div class="row"
+          - if single_post.policies.can_view
+            p  style="margin-bottom: 0.1em;" class="col-1" id="post_can_view" onclick="location.href='/account/#{single_post.poster_id}';" B0
+          - else
+            p  style="margin-bottom: 0.1em;" class="col-1" B0
+          div class="col-11"
         p = single_post.created_at
       div class="row"
         div class="col-10 d-flex align-items-center px-2"
@@ -37,6 +59,8 @@ div class="row" style="margin-top: 3rem"
     hr class="col my-0"
   div class="col" 
 
+
+
 - single_post.comments.each do |single_comment|
   div class="row" style="margin-top: 3rem"
     div class="col-sm-2"
@@ -45,20 +69,43 @@ div class="row" style="margin-top: 3rem"
         div class="col-10  post_align"
           div class="row text-muted" style="font-size: 0.8em;"
             - if single_comment.policies.can_view
-              p style="margin-bottom: 0.1em;" id="post_can_view" onclick="location.href='/account/#{single_comment.commenter_id}';" = single_comment.num
+              p style="margin-bottom: 0.1em;" class="col-1" id="post_can_view" onclick="location.href='/account/#{single_comment.commenter_id}';" = single_comment.num
             - else 
-              p style="margin-bottom: 0.1em;" = single_comment.num
+              p style="margin-bottom: 0.1em;" class="col-1" = single_comment.num
+            div class="col-11"
+
             p style="margin-bottom: 0.1em;" = single_comment.created_at
           div class="row" style="margin-top: 1rem"
             div class="col-10 d-flex align-items-center px-2"
               p class="comment_content" = single_comment.content
-        div class="col-1 text-center" 
-          div
-            i class="bi bi-caret-up" style="font-size: 1.5rem;"
-          p class="vote_sum" = single_comment.vote_sum
-          div
-            i class="bi bi-caret-down" style="font-size: 1.5rem;"
-          p class="vote_sum" = single_post.voted_number
+        div class="col-1 text-center"
+          - if !@current_account.logged_in?
+            div
+              i class="bi bi-caret-up" style="font-size: 1.5rem;"
+            p class="vote_sum" = single_comment.vote_sum
+            div
+              i class="bi bi-caret-down" style="font-size: 1.5rem;"
+          
+          - elsif single_comment.voted_number == 0
+            div
+              i class="bi bi-caret-up" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/comment/#{single_comment.comment_id}/votes/1';"
+            p class="vote_sum" = single_comment.vote_sum
+            div
+              i class="bi bi-caret-down" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/comment/#{single_comment.comment_id}/votes/-1';"
+          
+          - elsif single_comment.voted_number == 1
+            div
+              i class="bi bi-caret-up-fill" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/comment/#{single_comment.comment_id}/votes/0';"
+            p class="vote_sum" = single_comment.vote_sum
+            div
+              i class="bi bi-caret-down" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/comment/#{single_comment.comment_id}/votes/-1';"
+          
+          - elsif single_comment.voted_number == -1
+            div
+              i class="bi bi-caret-up" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/comment/#{single_comment.comment_id}/votes/1';"
+            p class="vote_sum" = single_comment.vote_sum
+            div
+              i class="bi bi-caret-down-fill" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/comment/#{single_comment.comment_id}/votes/0';"
 
       hr class="col my-0" style="margin-top: 2rem"
     div class="col-sm-1"
