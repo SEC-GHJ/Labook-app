@@ -22,7 +22,7 @@ module Labook
       @content = post_info['attributes']['content']
       @accept_mail = post_info['attributes']['accept_mail']
       @vote_sum = post_info['attributes']['vote_sum']
-      @created_at = post_info['attributes']['created_at']
+      @created_at = post_info['attributes']['created_at'][..-10]
 
       @comments = post_info['include']['comments'].each_with_index.map do |comment, num|
         if giving_policies
