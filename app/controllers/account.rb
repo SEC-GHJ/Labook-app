@@ -46,14 +46,10 @@ module Labook
 
         # Post /account/<registration_token>
         routing.post String do |registration_token|
-          puts 'routing /account/<registration_token>'
-
           passwords = Form::Passwords.new.call(routing.params)
           raise Form.message_values(passwords) if passwords.failure?
           
           profile_info = Form::Profile.new.call(routing.params)
-          puts "profile: #{profile_info}"
-          puts "params: #{routing.params}"
           if profile_info.failure?
             flash[:error] = Form.validation_errors(profile_info)
             routing.redirect "/auth/register/#{registration_token}"
@@ -83,10 +79,8 @@ module Labook
         end
 
         routing.on 'line' do
-          puts 'routing on account/line'
           # Post /account/line/<registration_token>
           routing.post String do |registration_token|
-            puts 'routing on register token'
             profile_info = Form::LineProfile.new.call(routing.params)
 
             if profile_info.failure?
@@ -94,9 +88,7 @@ module Labook
               routing.redirect "/account/line/#{registration_token}"
             end
 
-            puts "profile_info:#{profile_info}"
             line_info = SecureMessage.decrypt(registration_token)
-            puts "line_info:#{line_info}"
 
             CreateLineAccount.new(App.config).call(
               profile_info:, line_info:

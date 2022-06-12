@@ -121,7 +121,7 @@ module Labook
         # Get /auth/register/line/<token>
         routing.on 'line' do
           routing.get(String) do |registration_token|
-            flash.now[:notice] = 'Line Verified! Please choose a new password'
+            flash.now[:notice] = 'Line Verified!! Please register an account.'
             new_account = SecureMessage.decrypt(registration_token)
             undergraduate_info = YAML.safe_load File.read('app/seeds/undergraduate_info.yml')
             view :register_line_confirm,
