@@ -96,8 +96,13 @@ module Labook
             App.logger.warn "API server error: #{e.inspect}\n#{e.backtrace}"
             flash[:error] = 'Our servers are not responding -- please try later'
             routing.redirect @register_route
+          rescue VerifyRegistration::VerificationError => e
+            # flash[:error] = "#{JSON.parse(e.message)["message"]}"
+            App.logger.warn "Could not verify registration: #{JSON.parse(e.message)["message"]}"
+            flash[:error] = "Username or email has existed"
+            routing.redirect @register_route
           rescue StandardError => e
-            App.logger.error "Could not verify registration: #{e.inspect}"
+            App.logger.error "Could not verify registration: #{e.message}"
             flash[:error] = 'Please use English characters for account only'
             routing.redirect @register_route
           end
@@ -110,6 +115,18 @@ module Labook
           undergraduate_info = YAML.safe_load File.read('app/seeds/undergraduate_info.yml')
           view :register_confirm,
                locals: { new_account:, registration_token:, undergraduate_info: }
+        end
+
+        @register_line_route = "#{@register_route}/line"
+        # Get /auth/register/line/<token>
+        routing.on 'line' do
+          routing.get(String) do |registration_token|
+            flash.now[:notice] = 'Line Verified!! Please register an account.'
+            new_account = SecureMessage.decrypt(registration_token)
+            undergraduate_info = YAML.safe_load File.read('app/seeds/undergraduate_info.yml')
+            view :register_line_confirm,
+                locals: { new_account:, registration_token:, undergraduate_info: }
+          end
         end
       end
 
@@ -127,6 +144,9 @@ module Labook
         CurrentSession.new(session).current_account = current_account
         flash[:notice] = "Welcome back #{current_account.email}!"
         routing.redirect '/'
+      rescue AuthorizeLineAccount::UserNotFound => e
+        puts e
+        routing.redirect "#{@register_route}/line/#{e.line_register_url}"
       rescue AuthorizeLineAccount::UnauthorizedLineError => e
         App.logger.error "Could not connect with Line: #{e.inspect}"
         flash[:error] = 'Could not connect with Line'

@@ -4,10 +4,10 @@ require 'http'
 
 module Labook
   # Returns an authenticated user, or nil
-  class CreateAccount
+  class CreateLineAccount
     # Error for accounts that cannot be created
     class InvalidAccount < StandardError
-      def message = 'This account can no loger be created. Please start again'
+      def message = 'This account can no loger be created: please start again'
     end
 
     def initialize(config)
@@ -16,17 +16,18 @@ module Labook
 
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/ParameterLists
-    def call(username:, nickname:, gpa:, ori_school:,
-             ori_department:, password:, email:)
-      message = { username:,
-                  nickname:,
-                  gpa:,
-                  ori_school:,
-                  ori_department:,
-                  password:,
-                  email:,
+    def call(profile_info:, line_info:)
+      message = { 
+                  email: line_info['email'],
+                  username: profile_info['username'],
+                  nickname: profile_info['nickname'],
+                  gpa: profile_info['gpa'],
+                  ori_department: profile_info['ori_department'],
+                  ori_school: profile_info['ori_school'],
+                  line_id: line_info['line_id'],
                   show_all: false,
-                  accept_mail: false }
+                  accept_mail: false
+                }
 
       response = HTTP.post(
         "#{@config.API_URL}/accounts",

@@ -30,6 +30,17 @@ module Labook
         required(:ori_department).filled
         required(:ori_school).filled
       end
+      rule(:gpa) do
+        key.failure('should be a number between 0.0 to 4.3') unless valid_gpa?(value)
+      end
+
+      def valid_gpa?(string)
+        string.to_f >= 0 && string.to_f <= 4.3 && valid_float?(string)
+      end
+
+      def valid_float?(string)
+        !!Float(string) rescue false
+      end
     end
 
     # Passwords

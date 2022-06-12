@@ -19,6 +19,7 @@ div class="row" style="margin-top: 3rem"
         p class="vote_sum" = single_post.vote_sum
         div
           i class="bi bi-caret-down" style="font-size: 1.5rem;"
+        p class="vote_sum" = single_post.voted_number
 
 
     div class="col post_align"
@@ -57,5 +58,7 @@ div class="row" style="margin-top: 3rem"
           p class="vote_sum" = single_comment.vote_sum
           div
             i class="bi bi-caret-down" style="font-size: 1.5rem;"
+          p class="vote_sum" = single_post.voted_number
+
       hr class="col my-0" style="margin-top: 2rem"
     div class="col-sm-1"
