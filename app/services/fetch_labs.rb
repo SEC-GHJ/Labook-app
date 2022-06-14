@@ -10,20 +10,32 @@ module Labook
     end
 
     def call(current_account)
-      response = HTTP.auth("Bearer #{current_account.auth_token}")
-                     .get("#{@config.API_URL}/labs")
+      if current_account.logged_in?
+        response = HTTP.auth("Bearer #{current_account.auth_token}")
+                      .get("#{@config.API_URL}/labs")
+      else
+        response = HTTP.get("#{@config.API_URL}/labs")
+      end
       response.code == 200 ? response.parse : nil
     end
 
     def single(lab_id, current_account)
-      response = HTTP.auth("Bearer #{current_account.auth_token}")
-                     .get("#{@config.API_URL}/labs/#{lab_id}")
+      if current_account.logged_in?
+        response = HTTP.auth("Bearer #{current_account.auth_token}")
+                      .get("#{@config.API_URL}/labs/#{lab_id}")
+      else
+        response = HTTP.get("#{@config.API_URL}/labs/#{lab_id}")
+      end
       response.code == 200 ? response.parse : nil
     end
 
     def lab_posts(lab_id, current_account)
-      response = HTTP.auth("Bearer #{current_account.auth_token}")
-                     .get("#{@config.API_URL}/labs/#{lab_id}/posts")
+      if current_account.logged_in?
+        response = HTTP.auth("Bearer #{current_account.auth_token}")
+                      .get("#{@config.API_URL}/labs/#{lab_id}/posts")
+      else
+        response = HTTP.get("#{@config.API_URL}/labs/#{lab_id}/posts")
+      end
       response.code == 200 ? JSON.parse(response.to_s)['data'][0] : nil
     end
   end

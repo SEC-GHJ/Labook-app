@@ -17,8 +17,12 @@ module Labook
     end
 
     def single(post_id, current_account)
-      response = HTTP.auth("Bearer #{current_account.auth_token}")
-                     .get("#{@config.API_URL}/posts/#{post_id}")
+      if current_account.logged_in?
+        response = HTTP.auth("Bearer #{current_account.auth_token}")
+                      .get("#{@config.API_URL}/posts/#{post_id}")
+      else
+        response = HTTP.get("#{@config.API_URL}/posts/#{post_id}")
+      end
       response.code == 200 ? response.parse : nil
     end
 
