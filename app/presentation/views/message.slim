@@ -15,7 +15,7 @@ div class="container my-5"
                   div class="name" = chatroom.username
                   div class="status" 
                     i class="fa fa-circle offline" 
-                    = " left 7 mins ago"
+                    = " left #{chatroom.last_seen} ago"
             / li class="clearfix"
             /   img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar"
             /   div class="about"
