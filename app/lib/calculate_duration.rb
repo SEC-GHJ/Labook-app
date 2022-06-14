@@ -9,6 +9,7 @@ class CalculateDuration
   end
 
   def self.duration(time)
+    return nil if time.nil?
     created_at = Time.parse(time)
     duration = TimeDifference.between(created_at, Time.now).in_general
 

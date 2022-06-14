@@ -14,7 +14,7 @@ module Labook
       end
 
       # @last_seen = all.last.nil? ? nil : CalculateDuration.duration(all.last.created_at)
-      @last_seen = CalculateDuration.duration(all.last.created_at)
+      @last_seen = CalculateDuration.duration(all.last.created_at) unless all.last.nil?
     end
   end
 end
