@@ -127,6 +127,7 @@ GEM
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
+    secure_headers (6.3.3)
     sinatra (2.2.0)
       mustermann (~> 1.0)
       rack (~> 2.2)
@@ -174,6 +175,7 @@ DEPENDENCIES
   roda
   rubocop
   rubocop-performance
+  secure_headers
   sinatra
   slim
   time_difference

@@ -6,8 +6,8 @@ ruby File.read('.ruby-version').strip
 # Web
 gem 'puma'
 gem 'roda'
-gem 'slim'
 gem 'sinatra'
+gem 'slim'
 
 # Configuration
 gem 'figaro'
@@ -26,6 +26,7 @@ gem 'redis-rack'
 gem 'dry-validation'
 gem 'rack-ssl-enforcer'
 gem 'rbnacl' # assumes libsodium package already installed
+gem 'secure_headers'
 
 # Time format
 gem 'time_difference'
