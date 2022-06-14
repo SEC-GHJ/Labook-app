@@ -26,8 +26,11 @@ module Labook
       # GET /
       routing.root do
         nthu_department = YAML.safe_load File.read('app/seeds/department.yml')
+        labs = FetchLabs.new(App.config).call(@current_account)
+        all_labs = Labs.call(labs)
         view 'home', locals: { current_account: @current_account,
-                               nthu_department: }
+                               nthu_department:,
+                               all_labs: }
       end
     end
   end

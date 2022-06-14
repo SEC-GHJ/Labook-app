@@ -9,16 +9,22 @@ module Labook
       @config = config
     end
 
-    def call
-      response = HTTP.get("#{@config.API_URL}/labs")
-      raise unless response.code == 200
-
-      response.parse['data']
+    def call(current_account)
+      response = HTTP.auth("Bearer #{current_account.auth_token}")
+                     .get("#{@config.API_URL}/labs")
+      response.code == 200 ? response.parse : nil
     end
 
-    def single(lab_id)
-      response = HTTP.get("#{@config.API_URL}/labs/#{lab_id}")
+    def single(lab_id, current_account)
+      response = HTTP.auth("Bearer #{current_account.auth_token}")
+                     .get("#{@config.API_URL}/labs/#{lab_id}")
       response.code == 200 ? response.parse : nil
+    end
+
+    def lab_posts(lab_id, current_account)
+      response = HTTP.auth("Bearer #{current_account.auth_token}")
+                     .get("#{@config.API_URL}/labs/#{lab_id}/posts")
+      response.code == 200 ? JSON.parse(response.to_s)['data'][0] : nil
     end
   end
 end

@@ -1,1 +1,23 @@
-p all_lab 
+div class="row"
+  div class="col"
+  div class="col-sm-2" id='lab-border'
+    h3 class="text-center" id='login-text' Lab Details
+
+    div class="row"
+      div class="col-sm-2 col-0"
+      div class="col-sm-5 col-6" id="login-text" Lab name:
+      div class="col-sm-5 col-6" id="login-text-gray"
+        == single_lab.lab_name
+    div class="row"
+      div class="col-sm-2 col-0"
+      div class="col-sm-5 col-6" id="login-text" Professor:
+      div class="col-sm-5 col-6" id="login-text-gray"
+        == single_lab.professor
+    div class="row"
+      div class="col-sm-2 col-0"
+      div class="col-sm-5 col-6" id="login-text" Department:
+      div class="col-sm-5 col-6" id="login-text-gray"
+        == single_lab.department
+  div class="col"
+
+== render :lab_posts, locals: {lab_posts: lab_posts}

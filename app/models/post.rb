@@ -10,6 +10,7 @@ module Labook
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
     def initialize(post_info, giving_policies=false)
+      @lab_id = post_info['include']['lab_info']['attributes']['lab_id']
       @lab_name = post_info['include']['lab_info']['attributes']['lab_name']
       @school = post_info['include']['lab_info']['attributes']['school']
       @department = post_info['include']['lab_info']['attributes']['department']

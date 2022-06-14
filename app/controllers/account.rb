@@ -48,7 +48,7 @@ module Labook
         routing.post String do |registration_token|
           passwords = Form::Passwords.new.call(routing.params)
           raise Form.message_values(passwords) if passwords.failure?
-          
+
           profile_info = Form::Profile.new.call(routing.params)
           if profile_info.failure?
             flash[:error] = Form.validation_errors(profile_info)

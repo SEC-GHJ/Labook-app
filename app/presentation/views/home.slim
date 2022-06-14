@@ -1,8 +1,9 @@
 div class="row row-cols-lg-8 row-cols-xs-2 gy-2" style="margin-top:15px"
 div class="container my-3 post_container"
   div class="row row-cols-xl-6 row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1"
-     - nthu_department.each do |dep|
-        details class="col post_font"
-            summary class="card card-department mb-3 border border-2 p-2 align-items-center text-center" = dep['department']
-            - for prof in dep['profs']
-                p class="card card-department mb-1 border-1 p-1 align-items-center text-center" onclick="location.href='/labs';" = prof
+    - if all_labs
+      - all_labs.each do |department|
+          details class="col post_font"
+              summary class="card card-department mb-3 border border-2 p-2 align-items-center text-center" = department[0].department 
+              - for lab in department
+                  p class="card card-department mb-1 border-1 p-1 align-items-center text-center" onclick="location.href='/labs/#{lab.lab_id}';" = lab.professor

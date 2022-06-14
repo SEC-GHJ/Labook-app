@@ -53,7 +53,7 @@
   text-decoration: none;
 }
 @media (min-width: 576px) {
-  #login-border, #account-border, #regis-border{
+  #login-border, #account-border, #regis-border, #lab-border{
     box-sizing: border-box;
     border: 1px solid #c4c4c4;
     border-radius: 20px;
@@ -102,6 +102,12 @@
 #account-border{
   width: 35em;
   height: 24em;
+  margin-top: 3em;
+  padding: 3em;
+}
+#lab-border{
+  width: 35em;
+  height: 18em;
   margin-top: 3em;
   padding: 3em;
 }
