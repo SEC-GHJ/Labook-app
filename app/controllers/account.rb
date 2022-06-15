@@ -7,6 +7,7 @@ module Labook
   # Web controller for Labook API
   class App < Roda
     route('account') do |routing|
+      @account_route = '/account'
       routing.on do
         routing.get do
           # GET /account/[account_id]
@@ -41,6 +42,34 @@ module Labook
             else
               routing.redirect '/auth/login'
             end
+          end
+        end
+
+        routing.on 'setting' do
+          # POST /account/setting
+          routing.post do
+            params = SetDefaultSettingParams.call(routing.params)
+            setting = Form::AccountSetting.new.call(params)
+
+            if setting.failure?
+              flash[:error] = 'Can\'t update account setting'
+              routing.redirect "/account"
+            end
+            
+            new_account_setting = UpdateSetting.new(App.config, @current_account)
+                                               .call(setting.values)
+
+            @current_account.update_account_setting(new_account_setting)
+            CurrentSession.new(session).current_account = @current_account
+
+            flash[:notice] = "Successfully Update your setting."
+            routing.redirect @account_route
+          rescue UpdateSetting::NoUpdate
+            flash[:notice] = "No need to update for setting."
+            routing.redirect @account_route
+          rescue StandardError => e
+            flash[:error] = e.message
+            routing.redirect @account_route
           end
         end
 

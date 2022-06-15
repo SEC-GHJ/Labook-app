@@ -1,7 +1,7 @@
 div class="row"
   div class="col"
   div class="col-sm-2" id='account-border'
-    h3 class="text-center" id='login-text' Accout Details
+    h3 class="text-center" id='login-text' Account Details
 
     div class="row"
       div class="col-sm-2 col-0"
@@ -38,6 +38,44 @@ div class="row"
 
     - else
       hr
+      div class="d-flex justify-content-center"
+        h3 class="text-center" id='login-text' Setting
+        button {
+          class="btn" id="account-edit-bt"
+          type="button"
+        }
+          span.bi.bi-pencil-square
+      form method="post" action='/account/setting'
+        div class="row"
+          div class="col-sm-2 col-0"
+          div class="col-sm-5 col-6" id="login-text" Accept Message:
+          div class="col-sm-5 col-6" id="login-text-gray"
+            div class="form-check form-switch"
+              input {
+                class="form-check-input" type="checkbox"
+                id="accept-mail-bt" disabled="true"
+                name="accept_mail"
+                checked=('true' if current_account.accept_mail?)
+              }
+              label class="form-check-label" for="accept-mail-bt"
+        div class="row"
+          div class="col-sm-2 col-0"
+          div class="col-sm-5 col-6" id="login-text" Public Profile:
+          div class="col-sm-5 col-6" id="login-text-gray"
+            div class="form-check form-switch"
+              input {
+                class="form-check-input" type="checkbox" 
+                id="public-profile-bt" disabled="true"
+                name="show_all"
+                checked=('true' if current_account.show_all?)
+              } 
+              label class="form-check-label" for="public-profile-bt"
+
+        div class="d-flex justify-content-center my-2"
+          button {
+            class="btn btn-outline-success" id="account-save-bt"
+            type="submit" hidden="true"
+          } Save
       div class="row my-3"
         - if current_account.can_notify?
           button {

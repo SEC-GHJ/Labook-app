@@ -15,6 +15,10 @@ module Labook
 
     attr_reader :account_info, :auth_token, :policies
 
+    def update_account_setting(new_account_info)
+      @account_info = new_account_info
+    end
+
     def process_policies(policies)
       @policies = OpenStruct.new(policies)
     end
@@ -49,6 +53,16 @@ module Labook
 
     def can_notify?
       @account_info ? @account_info['can_notify'] : false
+    end
+
+    def show_all?
+      return false if @account_info.nil?
+      @account_info['show_all'].zero? ? false : true
+    end
+
+    def accept_mail?
+      return false if @account_info.nil?
+      @account_info['accept_mail'].zero? ? false : true
     end
 
     def logged_out?
