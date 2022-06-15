@@ -10,6 +10,7 @@ module Labook
       @message_route = '/messages'
 
       all_chatrooms = FetchChatrooms.new(App.config, @current_account).call
+      routing.redirect "/auth/logout" if all_chatrooms.nil?
       @chatrooms = Chatrooms.new(all_chatrooms)
 
       routing.is do

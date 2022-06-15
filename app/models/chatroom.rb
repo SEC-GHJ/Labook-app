@@ -12,8 +12,8 @@ module Labook
       @username = chat_info['attributes']['username']
       @nickname = chat_info['attributes']['nickname']
       @account_id = chat_info['attributes']['account_id']
-      @newest_content = chat_info['include']['attributes']['content']
-      created_at = Time.parse(chat_info['include']['attributes']['created_at']).strftime("%F %H:%M")
+      @newest_content = chat_info['include']['attributes']['content'] unless chat_info['include'].nil?
+      created_at = Time.parse(chat_info['include']['attributes']['created_at']).strftime("%F %H:%M") unless chat_info['include'].nil?
       @last_seen = CalculateDuration.duration(created_at)
     end
   end

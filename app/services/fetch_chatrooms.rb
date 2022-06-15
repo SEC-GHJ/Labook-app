@@ -13,9 +13,8 @@ module Labook
     def call
       response = HTTP.auth("Bearer #{@current_account.auth_token}")
                      .get("#{@config.API_URL}/chats")
-      raise unless response.code == 200
 
-      response.parse
+      response.code == 200 ? response.parse : nil
     end
   end
 end
