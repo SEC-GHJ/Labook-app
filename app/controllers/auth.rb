@@ -10,13 +10,9 @@ module Labook
     def line_oauth_url(config)
       url = config.LINE_OAUTH_URL
       @state = SecureRandom.hex(10)
-      data = {
-        response_type: 'code',
-        client_id: config.LINE_CHANNEL_ID,
-        redirect_uri: config.LINE_REDIRECT_URI,
-        scope: config.LINE_SCOPE,
-        state: @state
-      }
+      data = { response_type: 'code', client_id: config.LINE_CHANNEL_ID,
+               redirect_uri: config.LINE_REDIRECT_URI, scope: config.LINE_SCOPE,
+               state: @state }
       query = URI.encode_www_form(data).gsub('+', '%20')
       "#{url}/?#{query}"
     end

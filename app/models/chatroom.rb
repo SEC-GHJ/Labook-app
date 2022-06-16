@@ -13,7 +13,7 @@ module Labook
       @nickname = chat_info['attributes']['nickname']
       @account_id = chat_info['attributes']['account_id']
       @newest_content = chat_info['include']['attributes']['content'] unless chat_info['include'].nil?
-      created_at = Time.parse(chat_info['include']['attributes']['created_at']).strftime("%F %H:%M") unless chat_info['include'].nil?
+      created_at = Time.parse(chat_info['include']['attributes']['created_at']).strftime("%F %H:%M:%S") unless chat_info['include'].nil?
       @last_seen = CalculateDuration.duration(created_at)
     end
   end

@@ -12,7 +12,6 @@ module Labook
       @all = messages_list.map do |message|
         Message.new(message)
       end
-
       # @last_seen = all.last.nil? ? nil : CalculateDuration.duration(all.last.created_at)
       @last_seen = CalculateDuration.duration(all.last.created_at) unless all.last.nil?
     end
