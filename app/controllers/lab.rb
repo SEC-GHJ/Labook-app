@@ -17,7 +17,11 @@ module Labook
           # GET /labs/[lab_id]/new_post
           routing.on 'new_post' do
             # check whether the user is logged in
-            routing.redirect '/auth/login' unless @current_account.logged_in?
+            unless @current_account.logged_in?
+              flash[:error] = 'Please log in or register an account to create post!!'
+              routing.redirect '/auth/login'
+            end
+
             routing.get do
               view 'new_post', locals: { single_lab: @single_lab }
             end
