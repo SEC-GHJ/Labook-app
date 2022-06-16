@@ -14,8 +14,16 @@ class CalculateDuration
     duration = TimeDifference.between(created_at, Time.now).in_general
 
     # return value once value is not 0
+    all_zero_flag = true
+    out_put_string = "now"
     duration.each do |unit, value|
-      return format(unit, value) if value != 0
+      if value != 0
+        all_zero_flag = false
+        out_put_string = format(unit, value) 
+        break
+      end
     end
+
+    out_put_string
   end
 end

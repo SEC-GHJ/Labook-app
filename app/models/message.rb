@@ -8,7 +8,7 @@ module Labook
     def initialize(message_info)
       @chat_id = message_info['attributes']['chat_id']
       @content = message_info['attributes']['content']
-      @created_at = Time.parse(message_info['attributes']['created_at']).strftime("%F %H:%M")
+      @created_at = Time.parse(message_info['attributes']['created_at']).strftime("%F %H:%M:%S")
       @sender_id = message_info['attributes']['sender_id']
     end
   end
