@@ -19,7 +19,7 @@ module Labook
     def call(username:, nickname:, gpa:, ori_school:,
              ori_department:, password:, email:)
       message = { username:,
-                  nickname:,
+                  nickname: Base64.strict_encode64(nickname),
                   gpa:,
                   ori_school: Base64.strict_encode64(ori_school),
                   ori_department: Base64.strict_encode64(ori_department),

@@ -138,7 +138,7 @@ module Labook
         )
 
         CurrentSession.new(session).current_account = current_account
-        flash[:notice] = "Welcome back #{current_account.email}!"
+        flash[:notice] = "Welcome back #{current_account.username}!"
         routing.redirect '/'
       rescue AuthorizeLineAccount::UserNotFound => e
         puts e
