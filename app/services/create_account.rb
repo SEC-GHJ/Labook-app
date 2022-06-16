@@ -25,8 +25,8 @@ module Labook
                   ori_department: Base64.strict_encode64(ori_department),
                   password:,
                   email:,
-                  show_all: false,
-                  accept_mail: false }
+                  show_all: 0,
+                  accept_mail: 0 }
       
       response = HTTP.post(
         "#{@config.API_URL}/accounts",
