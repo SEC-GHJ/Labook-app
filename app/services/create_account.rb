@@ -21,13 +21,13 @@ module Labook
       message = { username:,
                   nickname:,
                   gpa:,
-                  ori_school:,
-                  ori_department:,
+                  ori_school: Base64.strict_encode64(ori_school),
+                  ori_department: Base64.strict_encode64(ori_department),
                   password:,
                   email:,
                   show_all: false,
                   accept_mail: false }
-
+      
       response = HTTP.post(
         "#{@config.API_URL}/accounts",
         json: SignedMessage.sign(message)

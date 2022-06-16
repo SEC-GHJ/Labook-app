@@ -14,6 +14,7 @@ module Labook
 
     def call(username:, password:)
       credentials = { username: username, password: password }
+
       response = HTTP.post("#{@config.API_URL}/auth/authenticate",
                            json: SignedMessage.sign(credentials))
       
