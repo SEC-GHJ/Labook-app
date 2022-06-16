@@ -12,8 +12,18 @@ module Labook
     plugin :multi_route
 
     APP_URL = ENV.fetch('APP_URL', nil)
-    IMG_SRC = %w[https://www.bootdey.com/img/Content/avatar/avatar1.png https://www.bootdey.com/img/Content/avatar/avatar2.png https://www.bootdey.com/img/Content/avatar/avatar7.png http://www.w3.org/2000/svg https://bootdey.com/img/Content/avatar/avatar1.png https://bootdey.com/img/Content/avatar/avatar2.png https://bootdey.com/img/Content/avatar/avatar7.png https://maxcdn.bootstrapcdn.com data:].freeze
-    FONT_SRC = %w[data: https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com https://fonts.gstatic.com https://maxcdn.bootstrapcdn.com].freeze
+    IMG_SRC = %w[https://www.bootdey.com/img/Content/avatar/avatar1.png
+                 https://www.bootdey.com/img/Content/avatar/avatar2.png
+                 https://www.bootdey.com/img/Content/avatar/avatar7.png
+                 http://www.w3.org/2000/svg https://bootdey.com/img/Content/avatar/avatar1.png
+                 https://bootdey.com/img/Content/avatar/avatar2.png
+                 https://bootdey.com/img/Content/avatar/avatar7.png
+                 https://maxcdn.bootstrapcdn.com data:].freeze
+    FONT_SRC = %w[data: https://cdn.jsdelivr.net
+                  https://cdnjs.cloudflare.com
+                  https://fonts.googleapis.com
+                  https://fonts.gstatic.com
+                  https://maxcdn.bootstrapcdn.com].freeze
     SCRIPT_SRC = %w[https://cdn.jsdelivr.net https://code.jquery.com https://ajax.googleapis.com/].freeze
     STYLE_SRC = %w[https://bootswatch.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://maxcdn.bootstrapcdn.com].freeze
 

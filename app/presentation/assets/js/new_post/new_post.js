@@ -1,3 +1,4 @@
+console.log('new_post.js loaded');
 (function () {
     'use strict'
   

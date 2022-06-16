@@ -108,4 +108,15 @@ div class="row" style="margin-top: 3rem"
               i class="bi bi-caret-down-fill" style="font-size: 1.5rem; cursor: pointer;" onclick="location.href='/comment/#{single_comment.comment_id}/votes/0';"
 
       hr class="col my-0" style="margin-top: 2rem"
-    div class="col-sm-1"
+    div class="col"
+
+- if @current_account.logged_in?
+  div class="row" style="margin-top: 1rem"
+    div class="col-sm-2"
+    div class="col-sm-8 chat-message clearfix"
+      form role="form" action="/post/#{single_post.post_id}" method='post' class="input-group mb-0"
+        input type="text" class="form-control" name="content" placeholder="Enter comment here..."                                    
+        div class="input-group-text"
+          button type='submit' class="btn submit" id='message-form-submit' value='submit'
+            span class="fa fa-send"
+    div class="col" 

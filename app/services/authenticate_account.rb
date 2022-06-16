@@ -13,8 +13,10 @@ module Labook
     end
 
     def call(username:, password:)
+      credentials = { username: username, password: password }
       response = HTTP.post("#{@config.API_URL}/auth/authenticate",
-                           json: { username:, password: })
+                           json: SignedMessage.sign(credentials))
+      
       raise(UnauthorizedError) if response.code == 403
       raise(ApiServerError) if response.code != 200
 

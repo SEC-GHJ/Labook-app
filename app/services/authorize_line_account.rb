@@ -32,11 +32,9 @@ module Labook
     end
 
     def call(code)
-      message = {
-        code:
-      }
+      message = { code: }
       response = HTTP.post("#{@config.API_URL}/auth/line_sso",
-                           json: message)
+                           json: SignedMessage.sign(message))
       
       raise UserNotFound, response if response.code == 404
       raise UnauthorizedLineError unless response.code == 200
