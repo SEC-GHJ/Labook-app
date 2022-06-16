@@ -36,7 +36,7 @@ module Labook
       else
         response = HTTP.get("#{@config.API_URL}/labs/#{lab_id}/posts")
       end
-      response.code == 200 ? JSON.parse(response.to_s)['data'][0] : nil
+      response.code == 200 ? JSON.parse(response.to_s)['data'] : nil
     end
   end
 end
