@@ -1,3 +1,4 @@
+console.log('account.js loaded');
 $('#account-edit-bt').click(function(){
     let accept_mail_bt = $('#accept-mail-bt').attr('disabled');
     let public_profile_bt = $('#public-profile-bt').attr('disabled');

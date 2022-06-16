@@ -17,9 +17,9 @@ module Labook
             elsif @current_account.logged_in?
               others_account = FetchOthersAccount.new(App.config, @current_account).call(account_id)
               raise('Unauthorized to access this account information.') if others_account.nil?
-  
+
               others_account_obj = Account.new(others_account, nil, true)
-  
+
               view :account, locals: { current_account: others_account_obj,
                                        all_posts: nil,
                                        line_notify_oauth_url: nil }
@@ -62,10 +62,10 @@ module Labook
             @current_account.update_account_setting(new_account_setting)
             CurrentSession.new(session).current_account = @current_account
 
-            flash[:notice] = "Successfully Update your setting."
+            flash[:notice] = 'Successfully Update your setting.'
             routing.redirect @account_route
           rescue UpdateSetting::NoUpdate
-            flash[:notice] = "No need to update for setting."
+            flash[:notice] = 'No need to update for setting.'
             routing.redirect @account_route
           rescue StandardError => e
             flash[:error] = e.message
