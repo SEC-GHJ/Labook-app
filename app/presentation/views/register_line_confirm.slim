@@ -36,7 +36,7 @@ div class="row"
           - undergraduate_info.each do |school|
             - if school == school
               - for depart in school['department']
-                option  value=new_account['ori_department'] class="dropdown-item" = depart
+                option  value=new_account['ori_department'] class="dropdown-item" == depart
       button type='submit' id='button-login' class="button-login" value='submit' Submit 
   div class="col"
 

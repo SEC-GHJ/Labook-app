@@ -98,8 +98,8 @@ module Labook
             routing.redirect @register_route
           rescue VerifyRegistration::VerificationError => e
             # flash[:error] = "#{JSON.parse(e.message)["message"]}"
-            App.logger.warn "Could not verify registration: #{JSON.parse(e.message)["message"]}"
-            flash[:error] = "Username or email has existed"
+            App.logger.warn "Could not verify registration: #{JSON.parse(e.message)['message']}"
+            flash[:error] = 'Username or email has existed'
             routing.redirect @register_route
           rescue StandardError => e
             App.logger.error "Could not verify registration: #{e.message}"
@@ -124,8 +124,9 @@ module Labook
             flash.now[:notice] = 'Line Verified!! Please register an account.'
             new_account = SecureMessage.decrypt(registration_token)
             undergraduate_info = YAML.safe_load File.read('app/seeds/undergraduate_info.yml')
-            view :register_line_confirm,
-                locals: { new_account:, registration_token:, undergraduate_info: }
+            view :register_line_confirm, locals: { new_account:,
+                                                   registration_token:,
+                                                   undergraduate_info: }
           end
         end
       end
