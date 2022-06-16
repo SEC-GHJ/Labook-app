@@ -31,6 +31,7 @@ module Labook
 
     configure do
       SecureMessage.setup(ENV.delete('MSG_KEY'))
+      SignedMessage.setup(config)
     end
 
     configure :production do
@@ -40,6 +41,8 @@ module Labook
 
       use Rack::Session::Redis,
           expire_after: ONE_MONTH,
+          httponly: true,
+          same_site: :strict,
           redis_server: {
             url: ENV.delete('REDIS_TLS_URL'),
             ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE }
@@ -48,6 +51,8 @@ module Labook
 
     configure :development, :test do
       require 'pry'
+
+      # NOTE: env var REDIS_URL only used to wipe the session store (ok to be nil)
       SecureSession.setup(ENV.fetch('REDIS_URL', nil)) # REDIS_URL used again below
 
       # use Rack::Session::Cookie,

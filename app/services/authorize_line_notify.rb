@@ -18,12 +18,10 @@ module Labook
     end
 
     def call(code)
-      message = {
-        code:
-      }
+      message = { code: }
       response = HTTP.auth("Bearer #{@current_account.auth_token}")
                      .post("#{@config.API_URL}/auth/line_notify_sso",
-                           json: message)
+                           json: SignedMessage.sign(message))
       raise UnauthorizedLineError unless response.code == 200
 
       updated_account = JSON.parse(response.to_s)['data']['attributes']

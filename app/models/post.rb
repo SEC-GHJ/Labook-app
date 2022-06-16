@@ -25,15 +25,17 @@ module Labook
       @vote_sum = post_info['attributes']['vote_sum']
       @created_at = post_info['attributes']['created_at'][..-10]
 
-      @comments = post_info['include']['comments'].each_with_index.map do |comment, num|
-        if giving_policies
-          Comment.new(comment, num, true)
-        else
-          Comment.new(comment, num)
+      unless post_info['include']['comments'].nil?
+        @comments = post_info['include']['comments'].each_with_index.map do |comment, num|
+          if giving_policies
+            Comment.new(comment, num, true)
+          else
+            Comment.new(comment, num)
+          end
         end
-      end
 
-      @comments.sort_by!(&:vote_sum).reverse!
+        @comments.sort_by!(&:vote_sum).reverse!
+      end
 
       process_policies(post_info['policies']) if giving_policies
       @voted_number = post_info['voted_number'] if giving_policies
