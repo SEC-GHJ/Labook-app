@@ -58,13 +58,6 @@ module Labook
           all_labs = Labs.call(labs)
           view 'home', locals: { all_labs: }
         end
-
-        # GET api/v1/labs/[lab_id]/posts
-        routing.get do
-          posts = FetchLabs.new(App.config).lab_posts(@current_account)
-          lab_posts = Posts.new(posts)
-          view 'lab', locals: { lab_posts: }
-        end
       end
     end
   end

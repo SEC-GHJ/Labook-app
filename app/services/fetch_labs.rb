@@ -12,7 +12,7 @@ module Labook
     def call(current_account)
       if current_account.logged_in?
         response = HTTP.auth("Bearer #{current_account.auth_token}")
-                      .get("#{@config.API_URL}/labs")
+                       .get("#{@config.API_URL}/labs")
       else
         response = HTTP.get("#{@config.API_URL}/labs")
       end
@@ -22,7 +22,7 @@ module Labook
     def single(lab_id, current_account)
       if current_account.logged_in?
         response = HTTP.auth("Bearer #{current_account.auth_token}")
-                      .get("#{@config.API_URL}/labs/#{lab_id}")
+                       .get("#{@config.API_URL}/labs/#{lab_id}")
       else
         response = HTTP.get("#{@config.API_URL}/labs/#{lab_id}")
       end
@@ -32,7 +32,7 @@ module Labook
     def lab_posts(lab_id, current_account)
       if current_account.logged_in?
         response = HTTP.auth("Bearer #{current_account.auth_token}")
-                      .get("#{@config.API_URL}/labs/#{lab_id}/posts")
+                       .get("#{@config.API_URL}/labs/#{lab_id}/posts")
       else
         response = HTTP.get("#{@config.API_URL}/labs/#{lab_id}/posts")
       end

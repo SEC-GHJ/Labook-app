@@ -43,29 +43,3 @@ div class="row"
       button type='submit' id='button-login' class="button-login" value='submit' Submit 
   div class="col"
 
-
-
-
-
-/ javascript:
-/   var undergraduate_info="#{undergraduate_info.to_json}";
-/   undergraduate_info=JSON.parse(undergraduate_info.replace(/&quot;/g,'"'));
-/   console.log(undergraduate_info);
-/   function getschool(){
-/     console.log('123132');
-/     var schoolElement=document.getElementById('ori-select').value;
-/     var school;
-/     var depart;
-/     for (school in undergraduate_info){
-/       console.log(schoolElement===undergraduate_info[school].school);
-/       if (schoolElement===undergraduate_info[school].school){
-/         for (depart in undergraduate_info[school].department){
-/           document.getElementById('depart-select').innerText=depart;
-/         }
-/         break;
-/       }
-/     }
-/     localStorage.setItem('text', schoolElement);
-    
-/   };
-
