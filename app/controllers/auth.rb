@@ -131,14 +131,11 @@ module Labook
         authorized = AuthorizeLineAccount
                      .new(App.config)
                      .call(routing.params['code'])
-        puts "authorized: #{authorized}"
-
+        
         current_account = Account.new(
           authorized[:account],
           authorized[:auth_token]
         )
-        puts "username: #{current_account.username}"
-        puts "login: #{current_account.logged_in?}"
 
         CurrentSession.new(session).current_account = current_account
         flash[:notice] = "Welcome back #{current_account.username}!"
