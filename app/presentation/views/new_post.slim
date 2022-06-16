@@ -1,0 +1,70 @@
+div class="container-md my-5 px-5 post_container"
+  div class="row"
+    div class="col"
+    div class="col-sm-8 post-font"
+      h4 class="mb-3" Lab information
+      form class="needs-validation" method="post" novalidate="true" action="/labs/#{single_lab.lab_id}/new_post"
+        div class="row"
+          div class="col-md-6 mb-3"
+            label for="school_name" School
+            input {
+              type="text" class="form-control" id="school_name"
+              name="school_name" placeholder="" value="#{single_lab.school}"
+              required="" disabled="true"
+            }
+            div class="invalid-feedback" School is required.
+          
+          
+          div class="col-md-6 mb-3"
+            label for="department_name" Department
+            input {
+              type="text" class="form-control" id="department_name"
+              name="department_name" placeholder="" value="#{single_lab.department}"
+              required="" disabled="true"
+            }
+            div class="invalid-feedback" Valid department is required.
+            
+        div class="row"
+          div class="col-md-6 mb-3"
+            label for="professor"Professor
+            input {
+              type="text" class="form-control" id="professor"
+              name="professor" placeholder="" value="#{single_lab.professor}"
+              required="" disabled="true"
+            }
+            div class="invalid-feedback" Professor is required.
+                    
+          div class="col-md-6 mb-3"
+            label for="lab_name"Lab Name
+            input {
+              type="text" class="form-control" id="lab_name"
+              name="lab_name" placeholder="" value="#{single_lab.lab_name}"
+              disabled="true"
+            }
+            div class="invalid-feedback" Lab Name is required.
+        div class="row"
+          label for="lab_score" Lab Score
+          div class="col-md-6 stars-container"
+            div class="stars"
+              input class="star star-5" id="star-5" type="radio" name="lab_score" value="5"
+              label class="star star-5" for="star-5"
+              input class="star star-4" id="star-4" type="radio" name="lab_score" value="4"
+              label class="star star-4" for="star-4"
+              input class="star star-3" id="star-3" type="radio" name="lab_score" value="3"
+              label class="star star-3" for="star-3"
+              input class="star star-2" id="star-2" type="radio" name="lab_score" value="2"
+              label class="star star-2" for="star-2"
+              input class="star star-1" id="star-1" type="radio" name="lab_score" value="1"
+              label class="star star-1" for="star-1"
+        div class="row"
+          div class="col mb-3"
+            label for="professor_attitude" Professor Attitude
+            input type="text" class="form-control" id="professor_attitude" name="professor_attitude" placeholder="" value="" required=""
+            div class="invalid-feedback" Professor Attitude is required.
+        div class="mb-3"
+          label for="content" class="form-label" Content
+          textarea class="form-control" id="content" name="content" rows="10" required=""
+          div class="invalid-feedback" Content is required.
+        div class="row justify-content-center"
+          button class="btn btn-outline-success" type="submit" Create
+    div class="col"

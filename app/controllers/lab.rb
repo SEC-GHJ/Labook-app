@@ -11,11 +11,45 @@ module Labook
         # GET /labs/{lab_id}
         # GET /labs/[lab_id]/posts
         routing.on String do |lab_id|
-          lab = FetchLabs.new(App.config).single(lab_id, @current_account)
-          single_lab = Lab.new(lab)
-          labposts_list = FetchLabs.new(App.config).lab_posts(lab_id, @current_account)
-          lab_posts = Posts.new(labposts_list) unless labposts_list.nil?
-          view 'lab', locals: { single_lab:, lab_posts:, current_account: @current_account }
+          @lab = FetchLabs.new(App.config).single(lab_id, @current_account)
+          @single_lab = Lab.new(@lab)
+
+          # GET /labs/[lab_id]/new_post
+          routing.on 'new_post' do
+            # check whether the user is logged in
+            routing.redirect '/auth/login' unless @current_account.logged_in?
+            routing.get do
+              view 'new_post', locals: { single_lab: @single_lab }
+            end
+            
+            routing.post do
+              new_post = Form::Post.new.call(routing.params)
+
+              if new_post.failure?
+                flash[:error] = Form.validation_errors(new_post)
+                raise
+              end
+
+              post = CreatePost.new(App.config, @current_account)
+                               .call(@single_lab, new_post.values)
+              post = Post.new(post)
+              
+              flash[:notice] = "Successfully post a post !!! Thank you for sharing your experience."
+              routing.redirect "/post/#{post.post_id}"
+            rescue StandardError => e
+              flash[:error] = 'Input error, can not upload a new post'
+              routing.redirect '/'
+            end
+          end
+
+          # GET /labs/{lab_id}
+          routing.is do
+            labposts_list = FetchLabs.new(App.config).lab_posts(lab_id, @current_account)
+            lab_posts = Posts.new(labposts_list) unless labposts_list.nil?
+            view 'lab', locals: { single_lab: @single_lab,
+                                  lab_posts:,
+                                  current_account: @current_account }
+          end
         end
 
         # GET /labs

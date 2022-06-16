@@ -53,7 +53,7 @@ module Labook
 
             if setting.failure?
               flash[:error] = 'Can\'t update account setting'
-              routing.redirect "/account"
+              routing.redirect '/account'
             end
             
             new_account_setting = UpdateSetting.new(App.config, @current_account)
