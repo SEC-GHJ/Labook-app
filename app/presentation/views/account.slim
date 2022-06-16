@@ -4,29 +4,29 @@ div class="row"
     h3 class="text-center" id='login-text' Account Details
 
     div class="row"
-      div class="col-sm-2 col-0"
-      div class="col-sm-5 col-6" id="login-text" Username:
-      div class="col-sm-5 col-6" id="login-text-gray"
+      div class="col-sm-1 col-0"
+      div class="col-sm-7 col-8" id="login-text" Username:
+      div class="col-sm-4 col-4" id="login-text-gray"
         == current_account.username
     div class="row"
-      div class="col-sm-2 col-0"
-      div class="col-sm-5 col-6" id="login-text" Nickname:
-      div class="col-sm-5 col-6" id="login-text-gray"
+      div class="col-sm-1 col-0"
+      div class="col-sm-7 col-8" id="login-text" Nickname:
+      div class="col-sm-4 col-4" id="login-text-gray"
         == current_account.nickname
     div class="row"
-      div class="col-sm-2 col-0"
-      div class="col-sm-5 col-6" id="login-text" GPA:
-      div class="col-sm-5 col-6" id="login-text-gray"
+      div class="col-sm-1 col-0"
+      div class="col-sm-7 col-8" id="login-text" GPA:
+      div class="col-sm-4 col-4" id="login-text-gray"
         == current_account.gpa
     div class="row"
-      div class="col-sm-2 col-0"
-      div class="col-sm-5 col-6" id="login-text" Undergraduate School:
-      div class="col-sm-5 col-6" id="login-text-gray"
+      div class="col-sm-1 col-0"
+      div class="col-sm-7 col-8" id="login-text" Undergraduate School:
+      div class="col-sm-4 col-4" id="login-text-gray"
         == current_account.ori_school
     div class="row"
-      div class="col-sm-2 col-0"
-      div class="col-sm-5 col-6" id="login-text" Undergraduate Major:
-      div class="col-sm-5 col-6" id="login-text-gray"
+      div class="col-sm-1 col-0"
+      div class="col-sm-7 col-8" id="login-text" Undergraduate Major:
+      div class="col-sm-4 col-4" id="login-text-gray"
         == current_account.ori_department
     
     - if line_notify_oauth_url.nil?
@@ -47,9 +47,9 @@ div class="row"
           span.bi.bi-pencil-square
       form method="post" action='/account/setting'
         div class="row"
-          div class="col-sm-2 col-0"
-          div class="col-sm-5 col-6" id="login-text" Accept Message:
-          div class="col-sm-5 col-6" id="login-text-gray"
+          div class="col-sm-1 col-0"
+          div class="col-sm-7 col-8" id="login-text" Accept Strangers' Message:
+          div class="col-sm-4 col-4" id="login-text-gray"
             div class="form-check form-switch"
               input {
                 class="form-check-input" type="checkbox"
@@ -59,9 +59,9 @@ div class="row"
               }
               label class="form-check-label" for="accept-mail-bt"
         div class="row"
-          div class="col-sm-2 col-0"
-          div class="col-sm-5 col-6" id="login-text" Public Profile:
-          div class="col-sm-5 col-6" id="login-text-gray"
+          div class="col-sm-1 col-0"
+          div class="col-sm-7 col-8" id="login-text" Public Profile:
+          div class="col-sm-4 col-4" id="login-text-gray"
             div class="form-check form-switch"
               input {
                 class="form-check-input" type="checkbox" 
