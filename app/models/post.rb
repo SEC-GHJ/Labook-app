@@ -34,7 +34,9 @@ module Labook
           end
         end
 
-        @comments.sort_by!(&:vote_sum).reverse!
+        @comments.sort_by! do |comment|
+          [comment.vote_sum, -comment.num[1..].to_i]
+        end.reverse!
       end
 
       process_policies(post_info['policies']) if giving_policies
