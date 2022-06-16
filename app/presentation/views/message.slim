@@ -10,7 +10,7 @@ div class="container my-5"
           ul class="list-unstyled chat-list mt-2 mb-0"
             - chatrooms.all.each do |chatroom|
               li class="clearfix" onclick="location.href='/messages/#{chatroom.account_id}';"
-                img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar" integrity="sha384-iMZxkZRE4Omp9hm9IewsztW5f0bIBi1KOYD9dEK43otwkKwLAyZvf2O6xsgEw2wZ" crossorigin="anonymous"
+                img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar" 
                 div class="about"
                   div class="name" = chatroom.username
                   div class="status" 
@@ -29,7 +29,7 @@ div class="container my-5"
               div class="row"
                 div class="col-lg-6"
                   a href="javascript:void(0);" data-toggle="modal" data-target="#view_info"
-                    img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar" integrity="sha384-I3N0L3zNS6PoenJPdN4GDPr3sZia/vcRQsuF/1h3fR+NyEL/WO2spzu8DBsmLogW" crossorigin="anonymous"
+                    img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar"
                   div class="chat-about"
                     h6 class="m-b-0" Start a new chat !!
                                   
@@ -39,7 +39,7 @@ div class="container my-5"
               div class="row"
                 div class="col-lg-6"
                   a href="javascript:void(0);" data-toggle="modal" data-target="#view_info"
-                    img src="https://bootdey.com/img/Content/avatar/avatar2.png"  alt="avatar"  integrity="sha384-I3N0L3zNS6PoenJPdN4GDPr3sZia/vcRQsuF/1h3fR+NyEL/WO2spzu8DBsmLogW" crossorigin="anonymous"
+                    img src="https://bootdey.com/img/Content/avatar/avatar2.png"  alt="avatar" 
                   div class="chat-about"
                     h6 class="m-b-0" = other_username
                     small = "Last seen: #{messages.last_seen} ago"
@@ -60,7 +60,7 @@ div class="container my-5"
                     li class="clearfix"
                       div class="message-data text-end"
                         span class="message-data-time" = single_message.created_at
-                        img src="https://bootdey.com/img/Content/avatar/avatar7.png"  alt="avatar" integrity="sha384-3XUGjXTs+cDWKZ4b6pF2P6UJPyp2NbBEv/l9rXcWSMr4uLWt9rNuevzitrHGsvwh" crossorigin="anonymous"
+                        img src="https://bootdey.com/img/Content/avatar/avatar7.png"  alt="avatar"
                       div class="message other-message float-right" = single_message.content
                   - else 
                     li class="clearfix"

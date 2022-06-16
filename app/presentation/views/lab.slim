@@ -18,6 +18,12 @@ div class="row"
       div class="col-sm-5 col-6" id="login-text" Department:
       div class="col-sm-5 col-6" id="login-text-gray"
         == single_lab.department
+    div class="row my-3 px-5"
+      button {
+        class="btn btn-outline-primary" id="create_post"
+        type="button" onclick="location.href='/labs/#{single_lab.lab_id}/new_post'"
+      }
+        span.bi.bi-pencil   Add Post
   div class="col"
 
 == render :lab_posts, locals: {lab_posts: lab_posts}

@@ -59,14 +59,17 @@ module Labook
       #     expire_after: ONE_MONTH, secret: config.SESSION_SECRET
 
       use Rack::Session::Pool,
-          expire_after: ONE_MONTH
-
+          expire_after: ONE_MONTH,
+          httponly: true,
+          same_site: :lax
       # use Rack::Session::Redis,
       #     expire_after: ONE_MONTH,
       #     redis_server: ENV.delete('REDIS_URL')
 
       # Allows running reload! in pry to restart entire app
-      def self.reload! = exec 'pry -r ./spec/test_load_all'
+      def self.reload!
+        exec 'pry -r ./spec/test_load_all'
+      end
     end
   end
 end
