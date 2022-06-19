@@ -131,7 +131,6 @@ module Labook
         authorized = AuthorizeLineAccount
                      .new(App.config)
                      .call(routing.params['code'])
-
         current_account = Account.new(
           authorized[:account],
           authorized[:auth_token]
