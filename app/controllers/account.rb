@@ -5,6 +5,7 @@ require_relative './app'
 
 module Labook
   # Web controller for Labook API
+  # rubocop:disable Metrics/ClassLength
   class App < Roda
     route('account') do |routing|
       @account_route = '/account'
@@ -18,7 +19,7 @@ module Labook
               others_account = FetchOthersAccount.new(App.config, @current_account).call(account_id)
               raise('Unauthorized to access this account information.') if others_account.nil?
 
-              others_account_obj = Account.new(others_account, nil, true)
+              others_account_obj = Account.new(others_account, nil, giving_policies: true)
 
               view :account, locals: { current_account: others_account_obj,
                                        all_posts: nil,
@@ -137,4 +138,5 @@ module Labook
       end
     end
   end
+  # rubocop:enable Metrics/ClassLength
 end

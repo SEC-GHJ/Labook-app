@@ -13,7 +13,7 @@ module Labook
     def comment(comment_id:, vote_number:)
       response = HTTP.auth("Bearer #{@current_account.auth_token}")
                      .post("#{@config.API_URL}/comments/#{comment_id}/votes",
-                           json: {"number": vote_number})
+                           json: { number: vote_number })
       raise unless response.code == 200
 
       response.parse['attributes']
@@ -22,7 +22,7 @@ module Labook
     def post(post_id:, vote_number:)
       response = HTTP.auth("Bearer #{@current_account.auth_token}")
                      .post("#{@config.API_URL}/posts/#{post_id}/votes",
-                           json: {"number": vote_number})
+                           json: { number: vote_number })
       raise unless response.code == 200
 
       response.parse['attributes']

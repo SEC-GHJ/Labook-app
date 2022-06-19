@@ -13,7 +13,7 @@ module Labook
     def call(post_id:, content:)
       content = {
         content:,
-        vote_sum: "0"
+        vote_sum: '0'
       }
       response = HTTP.auth("Bearer #{@current_account.auth_token}")
                      .post("#{@config.API_URL}/posts/#{post_id}/comments",

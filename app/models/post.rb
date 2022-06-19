@@ -9,7 +9,7 @@ module Labook
 
     # rubocop:disable Metrics/MethodLength
     # rubocop:disable Metrics/AbcSize
-    def initialize(post_info, giving_policies=false)
+    def initialize(post_info, giving_policies: false)
       @lab_id = post_info['include']['lab_info']['attributes']['lab_id']
       @lab_name = post_info['include']['lab_info']['attributes']['lab_name']
       @school = post_info['include']['lab_info']['attributes']['school']
@@ -28,7 +28,7 @@ module Labook
       unless post_info['include']['comments'].nil?
         @comments = post_info['include']['comments'].each_with_index.map do |comment, num|
           if giving_policies
-            Comment.new(comment, num, true)
+            Comment.new(comment, num, giving_policies: true)
           else
             Comment.new(comment, num)
           end
@@ -46,7 +46,7 @@ module Labook
     # rubocop:enable Metrics/AbcSize
 
     def process_policies(policies)
-      @policies = OpenStruct.new(policies)
+      @policies = Struct.new(policies)
     end
   end
 end

@@ -15,6 +15,7 @@ module Labook
     # if the account is not found
     class UserNotFound < StandardError
       def initialize(response)
+        super
         @response = JSON.parse(response.to_s)
       end
 
@@ -35,7 +36,7 @@ module Labook
       message = { code: }
       response = HTTP.post("#{@config.API_URL}/auth/line_sso",
                            json: SignedMessage.sign(message))
-      
+
       raise UserNotFound, response if response.code == 404
       raise UnauthorizedLineError unless response.code == 200
 

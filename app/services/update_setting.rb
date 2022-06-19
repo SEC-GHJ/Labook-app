@@ -20,7 +20,7 @@ module Labook
       }
       response = HTTP.auth("Bearer #{@current_account.auth_token}")
                      .patch("#{@config.API_URL}/accounts/setting",
-                           json: message)
+                            json: message)
       raise NoUpdate if response.code == 204
       raise unless response.code == 200
 

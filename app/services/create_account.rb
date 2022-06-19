@@ -27,7 +27,7 @@ module Labook
                   email:,
                   show_all: 0,
                   accept_mail: 0 }
-      
+
       response = HTTP.post(
         "#{@config.API_URL}/accounts",
         json: SignedMessage.sign(message)

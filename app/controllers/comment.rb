@@ -12,8 +12,8 @@ module Labook
         routing.on String do |comment_id|
           routing.on 'votes' do
             routing.on String do |vote_number|
-              vote = CreateVote.new(App.config, @current_account)
-                               .comment(comment_id:, vote_number:)
+              CreateVote.new(App.config, @current_account)
+                        .comment(comment_id:, vote_number:)
 
               redirect back
             rescue StandardError => e

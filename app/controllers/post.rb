@@ -12,8 +12,8 @@ module Labook
           # POST /post/{post_id}/votes/{vote_number}
           routing.on 'votes' do
             routing.on String do |vote_number|
-              vote = CreateVote.new(App.config, @current_account)
-                               .post(post_id:, vote_number:)
+              CreateVote.new(App.config, @current_account)
+                        .post(post_id:, vote_number:)
               redirect back
             rescue StandardError => e
               response.status = 500
@@ -26,13 +26,10 @@ module Labook
           # POST /post/{post_id}
           routing.post do
             content = Form::Message.new.call(routing.params)
+            routing.redirect "/post/#{post_id}" if content.failure?
 
-            if content.failure?
-              routing.redirect "/post/#{post_id}"
-            end
-
-            new_comment = CreateComment.new(App.config, @current_account)
-                                       .call(post_id:, **content.values)
+            CreateComment.new(App.config, @current_account)
+                         .call(post_id:, **content.values)
             routing.redirect "/post/#{post_id}"
           rescue StandardError => e
             App.logger.warn e.message
@@ -43,7 +40,7 @@ module Labook
           # GET /post/{post_id}
           routing.get do
             single_post = FetchPosts.new(App.config).single(post_id, @current_account)
-            post = Post.new(single_post, giving_policies=true)
+            post = Post.new(single_post, giving_policies: true)
             view :post, locals: { single_post: post }
           end
         end

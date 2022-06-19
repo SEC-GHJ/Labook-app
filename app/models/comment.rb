@@ -5,7 +5,7 @@ module Labook
   class Comment
     attr_reader :content, :comment_id, :commenter_id, :vote_sum, :created_at, :num, :policies, :voted_number
 
-    def initialize(comment_info, num, giving_policies=false)
+    def initialize(comment_info, num, giving_policies: false)
       @num = "B#{num + 1}"
       @comment_id = comment_info['attributes']['comment_id']
       @content = comment_info['attributes']['content']
@@ -18,7 +18,7 @@ module Labook
     end
 
     def process_policies(policies)
-      @policies = OpenStruct.new(policies)
+      @policies = Struct.new(policies)
     end
   end
 end

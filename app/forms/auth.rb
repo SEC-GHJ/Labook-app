@@ -39,7 +39,9 @@ module Labook
       end
 
       def valid_float?(string)
-        !!Float(string) rescue false
+        !!Float(string)
+      rescue ArgumentError
+        false
       end
     end
 

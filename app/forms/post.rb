@@ -25,7 +25,9 @@ module Labook
       end
 
       def valid_int?(string)
-        !!Integer(string) rescue false
+        !!Integer(string)
+      rescue ArgumentError
+        false
       end
     end
   end

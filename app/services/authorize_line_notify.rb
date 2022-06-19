@@ -25,7 +25,7 @@ module Labook
       raise UnauthorizedLineError unless response.code == 200
 
       updated_account = JSON.parse(response.to_s)['data']['attributes']
-      
+
       {
         account: updated_account['account']['attributes']
       }

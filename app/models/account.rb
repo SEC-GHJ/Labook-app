@@ -3,7 +3,7 @@
 module Labook
   # Behaviors of the currently logged in account
   class Account
-    def initialize(account_info, auth_token = nil, giving_policies=false)
+    def initialize(account_info, auth_token = nil, giving_policies: false)
       if giving_policies
         @account_info = account_info['attributes']
         process_policies(account_info['policies'])
@@ -20,7 +20,7 @@ module Labook
     end
 
     def process_policies(policies)
-      @policies = OpenStruct.new(policies)
+      @policies = Struct.new(policies)
     end
 
     def username
@@ -57,12 +57,14 @@ module Labook
 
     def show_all?
       return false if @account_info.nil?
-      @account_info['show_all'].zero? ? false : true
+
+      @account_info['show_all'] == 1
     end
 
     def accept_mail?
       return false if @account_info.nil?
-      @account_info['accept_mail'].zero? ? false : true
+
+      @account_info['accept_mail'] == 1
     end
 
     def logged_out?

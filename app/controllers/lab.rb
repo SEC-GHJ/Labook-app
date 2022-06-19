@@ -25,7 +25,7 @@ module Labook
             routing.get do
               view 'new_post', locals: { single_lab: @single_lab }
             end
-            
+
             routing.post do
               new_post = Form::Post.new.call(routing.params)
 
@@ -37,12 +37,14 @@ module Labook
               post = CreatePost.new(App.config, @current_account)
                                .call(@single_lab, new_post.values)
               post = Post.new(post)
-              
-              flash[:notice] = "Successfully post a post !!! Thank you for sharing your experience."
+
+              flash[:notice] = 'Successfully post a post !!! Thank you for sharing your experience.'
               routing.redirect "/post/#{post.post_id}"
             rescue StandardError => e
+              response.status = 500
+              App.logger.warn e.message
               flash[:error] = 'Input error, can not upload a new post'
-              routing.redirect '/'
+              redirect back
             end
           end
 

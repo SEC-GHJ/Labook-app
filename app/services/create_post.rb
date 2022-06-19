@@ -2,12 +2,12 @@
 
 require 'http'
 
-
 module Labook
   # Returns an new created post
   class CreatePost
-    class FindLabError < StandardError 
-      def message = "Can not find or create Lab";
+    # Can not find lab
+    class FindLabError < StandardError
+      def message = 'Can not find or create Lab'
     end
 
     def initialize(config, current_account)
@@ -15,6 +15,7 @@ module Labook
       @current_account = current_account
     end
 
+    # rubocop:disable Metrics/MethodLength
     def call(lab, params)
       message = {
         lab_score: params[:lab_score],
@@ -29,5 +30,6 @@ module Labook
 
       response.parse['data']
     end
+    # rubocop:enable Metrics/MethodLength
   end
 end

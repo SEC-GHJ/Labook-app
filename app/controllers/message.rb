@@ -10,7 +10,7 @@ module Labook
       @message_route = '/messages'
 
       all_chatrooms = FetchChatrooms.new(App.config, @current_account).call
-      routing.redirect "/auth/logout" if all_chatrooms.nil?
+      routing.redirect '/auth/logout' if all_chatrooms.nil?
       @chatrooms = Chatrooms.new(all_chatrooms)
 
       routing.is do
@@ -21,19 +21,18 @@ module Labook
 
       routing.on String do |other_account_id|
         routing.on 'new' do
-          chatroom = CreateChatroom.new(App.config, @current_account).call(other_account_id:)
+          CreateChatroom.new(App.config, @current_account).call(other_account_id:)
 
           routing.redirect "#{@message_route}/#{other_account_id}"
         rescue StandardError => e
           response.status = 500
+          App.logger.warn e.message
           flash[:error] = 'Failed! Please try again later.'
           routing.redirect "/account/#{other_account_id}"
         end
 
         routing.get do
-          other_username = @chatrooms.all.select{ |chatroom|
-            chatroom.account_id == other_account_id
-          }[0].username
+          other_username = @chatrooms.all.find { |chatroom| chatroom.account_id == other_account_id }.username
           all_messages = FetchMessages.new(App.config, @current_account).call(other_account_id:)
           messages = Messages.new(all_messages)
           view :message, locals: { chatrooms: @chatrooms, messages:,
@@ -44,17 +43,15 @@ module Labook
 
         routing.post do
           content = Form::Message.new.call(routing.params)
+          routing.redirect "#{@message_route}/#{other_account_id}" if content.failure?
 
-          if content.failure?
-            routing.redirect "#{@message_route}/#{other_account_id}"
-          end
-
-          new_chat = CreateChat.new(App.config, @current_account)
-                               .call(other_account_id:, **content.values)
+          CreateChat.new(App.config, @current_account)
+                    .call(other_account_id:, **content.values)
 
           routing.redirect "#{@message_route}/#{other_account_id}"
         rescue StandardError => e
           response.status = 500
+          App.logger.warn e.message
           routing.redirect @message_route
         end
       end

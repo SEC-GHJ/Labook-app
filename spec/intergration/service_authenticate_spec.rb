@@ -7,7 +7,9 @@ describe 'Test Service Objects' do
   before do
     @credentials = { username: 'a1', password: 'password1' }
     @mal_credentials = { username: 'a1', password: 'wrongpassword' }
-    @api_account = { username: 'a1', nickname: '大帥哥', gpa: '3.4', ori_school: 'NTHU', ori_department: 'CS', email: 'a1@gmail.com' }
+    @api_account = { username: 'a1', nickname: '大帥哥',
+                     gpa: '3.4', ori_school: 'NTHU',
+                     ori_department: 'CS', email: 'a1@gmail.com' }
   end
 
   after do
